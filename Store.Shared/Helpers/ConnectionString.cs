@@ -12,7 +12,7 @@ namespace Store.Shared.Helpers
         string Store { get; }
     }
 
-    internal class ConnectionString : IConnectionString
+    public class ConnectionString : IConnectionString
     {
         public string Store { get; private set; }
 

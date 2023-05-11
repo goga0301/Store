@@ -16,6 +16,13 @@ namespace Store.Infrastructure.Repository.Configurations
         {
             builder.Property(x => x.Name).HasColumnName("Name").HasMaxLength(100).IsRequired();
             builder.Property(x => x.Price).HasColumnName("Price").HasMaxLength(9).IsRequired();
+            builder.Property(x=> x.Description).HasColumnName("Description").HasMaxLength(1000); 
+            builder.Property(x => x.Stock).HasColumnName("Stock").IsRequired();
+            builder.Property(x => x.ImageUrl).HasColumnName("ImageUrl").HasMaxLength(1000);
+
+            builder.HasOne(x => x.ProductCategory).WithMany().HasForeignKey(x => x.ProductCategoryId);
+
+            builder.HasIndex(x => x.ProductCategoryId);
         }
     }
 }

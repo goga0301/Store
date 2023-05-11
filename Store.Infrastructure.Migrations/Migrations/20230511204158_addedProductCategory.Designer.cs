@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Store.Infrastructure.Repository.DbContexts;
 
@@ -10,9 +11,10 @@ using Store.Infrastructure.Repository.DbContexts;
 namespace Store.Infrastructure.Migrations.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230511204158_addedProductCategory")]
+    partial class addedProductCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -46,9 +48,6 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<decimal?>("Price")
                         .HasColumnType("decimal");
 
-                    b.Property<int>("ProductCategoryId")
-                        .HasColumnType("int");
-
                     b.Property<byte>("RecordStatus")
                         .HasColumnType("byte");
 
@@ -56,8 +55,6 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ProductCategoryId");
 
                     b.ToTable("Product", "StoreDb");
                 });
@@ -88,17 +85,6 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ProductCategory", "StoreDb");
-                });
-
-            modelBuilder.Entity("Store.Domain.Entities.Product", b =>
-                {
-                    b.HasOne("Store.Domain.Entities.ProductCategory", "ProductCategory")
-                        .WithMany()
-                        .HasForeignKey("ProductCategoryId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("ProductCategory");
                 });
 #pragma warning restore 612, 618
         }

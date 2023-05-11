@@ -6,6 +6,7 @@ namespace Store.Infrastructure.Repository.DbContexts
     public class StoreDbContext : DbContext
     {
         public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {
         }
