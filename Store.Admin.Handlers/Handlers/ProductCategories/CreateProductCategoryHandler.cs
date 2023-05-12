@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Store.Admin.Handlers.Commands.ProductCategories;
 using Store.Domain.Entities;
+using Store.Domain.Entities.Enums;
 using Store.Domain.Repository;
 using Store.Shared.Helpers;
 using System.Transactions;
@@ -24,6 +25,7 @@ namespace Store.Admin.Handlers.Handlers.ProductsCategories
                     Name = request.Model.Name,
                     Description = request.Model.Description,
                     MainCategoryId = request.Model.MainCategoryId,
+                    RecordStatus = RecordStatusEnum.Active,
                     CreateDate = DateTime.Now,
                     CreateUserId = "test"
 

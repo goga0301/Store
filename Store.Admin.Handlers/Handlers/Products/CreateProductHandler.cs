@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Store.Admin.Handlers.Commands.Products;
 using Store.Domain.Entities;
+using Store.Domain.Entities.Enums;
 using Store.Domain.Repository;
 using Store.Shared.Helpers;
 using System.Transactions;
@@ -27,6 +28,7 @@ namespace Store.Admin.Handlers.Handlers.Products
                     Stock = request.Model.Stock,
                     ImageUrl = request.Model.ImageUrl,
                     ProductCategoryId = request.Model.ProductCategoryId,
+                    RecordStatus = RecordStatusEnum.Active,
                     CreateDate = DateTime.Now,
                     CreateUserId = "test"
 

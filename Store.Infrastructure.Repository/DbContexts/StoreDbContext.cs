@@ -8,6 +8,8 @@ namespace Store.Infrastructure.Repository.DbContexts
     {
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
+        public DbSet<MainCategory> MainCategories { get; set; }
+        public DbSet<Customer> Customers { get; set; }
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {
         }

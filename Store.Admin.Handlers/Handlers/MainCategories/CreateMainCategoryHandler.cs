@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Store.Admin.Handlers.Commands.MainCategories;
 using Store.Domain.Entities;
+using Store.Domain.Entities.Enums;
 using Store.Domain.Repository;
 using Store.Shared.Helpers;
 using System.Transactions;
@@ -21,8 +22,11 @@ namespace Store.Admin.Handlers.Handlers.MainCategories
                 var mainCategory = new MainCategory
                 {
                     Name = request.Model.Name,
-                    Description = request.Model.Description
-
+                    Description = request.Model.Description,
+                    RecordStatus = RecordStatusEnum.Active,
+                    CreateDate = DateTime.Now,
+                    CreateUserId = "test"
+                    
                 };
                 _mainCategoryRepository.Create(mainCategory);
                 await _mainCategoryRepository.SaveChangesAsync();
