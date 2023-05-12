@@ -1,5 +1,4 @@
 ﻿using Store.Domain.Entities;
-using Store.Domain.Service.Domain.Base;
 
 namespace Store.Domain.Service.Domain
 {

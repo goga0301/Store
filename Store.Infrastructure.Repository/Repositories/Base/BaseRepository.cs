@@ -1,6 +1,5 @@
 ﻿using Devart.Data.Oracle;
 using Store.Domain.Repository;
-using System;
 using System.Data;
 
 namespace Store.Infrastructure.Repository.Repositories.Base

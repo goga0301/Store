@@ -6,11 +6,6 @@ using Store.Infrastructure.Repository.DbContexts;
 using Store.Infrastructure.Repository.Repositories;
 using Store.Infrastructure.Repository.Repositories.Base;
 using Store.Shared.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Store.Infrastructure.Repository
 {
@@ -31,6 +26,8 @@ namespace Store.Infrastructure.Repository
 
             services.AddScoped<IProductRepository, ProductRepository>();
             services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
+            services.AddScoped<IMainCategoryRepository, MainCategoryRepository>();
+            
         }
 
     }

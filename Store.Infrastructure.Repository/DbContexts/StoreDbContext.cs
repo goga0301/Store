@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Store.Domain.Entities;
+using Store.Infrastructure.Repository.Configurations;
 
 namespace Store.Infrastructure.Repository.DbContexts
 {
@@ -14,6 +15,7 @@ namespace Store.Infrastructure.Repository.DbContexts
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasDefaultSchema("StoreDb");
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(ProductCategoryConfiguration).Assembly);
             modelBuilder.Model.SetMaxIdentifierLength(30);
 
             foreach (var entity in modelBuilder.Model.GetEntityTypes())

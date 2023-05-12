@@ -5,7 +5,6 @@ using Store.Domain.Entities.Enums;
 using Store.Domain.Repository.Base;
 using Store.Shared.Helpers;
 using System.Linq.Expressions;
-using System.Threading.Tasks;
 
 namespace Store.Infrastructure.Repository.Repositories.Base
 {

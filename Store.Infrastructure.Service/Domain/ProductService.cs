@@ -1,7 +1,6 @@
 ﻿using Store.Domain.Entities;
 using Store.Domain.Repository;
 using Store.Domain.Service.Domain;
-using System.Runtime.CompilerServices;
 
 namespace Store.Infrastructure.Service.Domain
 {

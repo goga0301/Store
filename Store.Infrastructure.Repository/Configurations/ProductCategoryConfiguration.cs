@@ -8,8 +8,13 @@ namespace Store.Infrastructure.Repository.Configurations
     {
         public override void ConfigureEntity(EntityTypeBuilder<ProductCategory> builder)
         {
-            builder.Property(x => x.Name).HasColumnName("Name").HasMaxLength(100).IsRequired();
-            builder.Property(x => x.Description).HasColumnName("Description").HasMaxLength(1000);
+            builder.Property(x => x.Name).HasColumnName("Name").HasColumnType("varchar").HasMaxLength(90).IsRequired();
+            builder.Property(x => x.Description).HasColumnName("Description").HasColumnType("varchar").HasMaxLength(300);
+            builder.Property(x => x.MainCategoryId).HasColumnName("MainCategoryId").IsRequired();
+
+            builder.HasOne(x => x.MainCategory).WithMany().HasForeignKey(x => x.MainCategoryId);
+
+            builder.HasIndex(x => x.MainCategoryId);
 
         }
     }

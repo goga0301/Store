@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Store.Admin.Handlers\Store.Admin.Handlers.csproj" />
     <ProjectReference Include="..\Store.Domain.Service\Store.Domain.Service.csproj" />
     <ProjectReference Include="..\Store.Infrastructure.Repository\Store.Infrastructure.Repository.csproj" />
     <ProjectReference Include="..\Store.Infrastructure.Service\Store.Infrastructure.Service.csproj" />

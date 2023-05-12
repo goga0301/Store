@@ -1,3 +1,4 @@
+using Store.Admin.Handlers.Queries.Products;
 using Store.Infrastructure.Repository;
 using Store.Infrastructure.Service;
 
@@ -10,6 +11,10 @@ builder.Services.AddControllers();
 builder.Services.AddDbContexts(builder.Configuration);
 builder.Services.AddDomainServices();
 builder.Services.AddRepositories();
+builder.Services.AddMediatR(x =>
+{
+    x.RegisterServicesFromAssembly(typeof(GetProductQuery).Assembly);
+});
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

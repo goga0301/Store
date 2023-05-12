@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Store.Domain.Entities.Base;
 using Store.Domain.Entities.Enums;
-using System;
 
 namespace Store.Infrastructure.Repository.Configurations.Base
 {
@@ -24,7 +23,7 @@ namespace Store.Infrastructure.Repository.Configurations.Base
 
             builder.Property(x => x.RecordStatus).HasColumnName("RecordStatus").IsRequired();
             builder.Property(x => x.CreateDate).HasColumnName("CreateDate").IsRequired();
-            builder.Property(x => x.CreateUserId).HasColumnName("CreateUserId").HasMaxLength(100).IsRequired();
+            builder.Property(x => x.CreateUserId).HasColumnName("CreateUserId").HasColumnType("varchar").HasMaxLength(100).IsRequired();
 
             builder.HasIndex(x => x.RecordStatus);
 

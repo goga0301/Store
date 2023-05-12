@@ -1,6 +1,9 @@
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using Store.Domain.Entities;
-using Store.Domain.Service.Domain;
+using Store.Admin.Handlers.Commands.Products;
+using Store.Admin.Handlers.Queries.Products;
+using Store.Domain.Models.Domain;
+using Store.Shared.Helpers;
 
 namespace Store.Admin.Api.Controllers
 {
@@ -9,51 +12,43 @@ namespace Store.Admin.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
-        private readonly IProductService _productService;
+        private readonly IMediator _mediator;
 
-        public ProductController(IProductService productService, ILogger<ProductController> logger)
+        public ProductController(IMediator mediator, ILogger<ProductController> logger)
         {
-            _productService = productService;
+            _mediator = mediator;
             _logger = logger;
         }
 
         [HttpGet("Get")]
-        public async Task<Product> Get(int Id)
+        public async Task<IApiResponse> Get(int Id)
         {
-            return await _productService.GetProductByIdAsync(Id);
+            return await _mediator.Send(new GetProductQuery(Id));
         }
 
-        [HttpGet("GetByCategory")]
-        public async Task<IEnumerable<Product>> GetByCategory(int categoryId)
-        {
-            return await _productService.GetProductByCategory(categoryId);
-        }
 
         [HttpGet("GetAll")]
-        public async Task<IEnumerable<Product>> GetAll()
+        public async Task<IApiResponse> GetAll()
         {
-            return await _productService.GetAllProducts();
+            return await _mediator.Send(new GetProductsQuery());
         }
 
         [HttpPost("Create")]
-        public IActionResult Create([FromBody] Product product)
+        public async Task<IApiResponse> Create([FromBody] CreateProductModel product)
         {
-            _productService.AddProduct(product);
-            return Ok();
+            return await _mediator.Send(new CreateProductCommand(product));
         }
 
         [HttpPut("Update")]
-        public IActionResult Update([FromBody] Product product)
+        public async Task<IApiResponse> Update([FromBody] UpdateProductModel product)
         {
-            _productService.UpdateProduct(product);
-            return Ok();
+            return await _mediator.Send(new UpdateProductCommand(product));
         }
-
+         
         [HttpDelete("Delete")]
-        public IActionResult Delete([FromBody] Product product)
+        public async Task<IApiResponse> Delete([FromBody] DeleteProductModel product)
         {
-            _productService.DeleteProduct(product);
-            return Ok();
+            return await _mediator.Send(new DeleteProductCommand(product));
         }
         
     }

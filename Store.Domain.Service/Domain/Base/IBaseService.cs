@@ -1,11 +1,4 @@
-﻿using Store.Domain.Entities.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Store.Domain.Service.Domain.Base
+﻿namespace Store.Domain.Service.Domain.Base
 {
     public interface IBaseService<T> where T : class
     {
