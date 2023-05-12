@@ -21,13 +21,12 @@ namespace Store.Admin.Api.Controllers
             _mediator = mediator;
             _logger = logger;
         }
+
         [HttpGet("Get")]
         public async Task<IApiResponse> Get(int Id)
         {
             return await _mediator.Send(new GetCustomerQuery(Id));
         }
-
-
 
         [HttpGet("GetAll")]
         public async Task<IApiResponse> GetAll()

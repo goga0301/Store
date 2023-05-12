@@ -17,7 +17,7 @@ namespace Store.Domain.Models.Domain
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string Gender { get; set; }
+        public GenderEnum Gender { get; set; }
         public DateTimeOffset BirthDate { get; set; }
         public DateTimeOffset CreateDate { get; set; }
         public RecordStatusEnum RecordStatus { get; set; }
@@ -35,7 +35,7 @@ namespace Store.Domain.Models.Domain
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string Gender { get; set; }
+        public GenderEnum Gender { get; set; }
         public DateTimeOffset BirthDate { get; set; }
     }
 
@@ -49,7 +49,7 @@ namespace Store.Domain.Models.Domain
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string Gender { get; set; }
+        public GenderEnum Gender { get; set; }
         public DateTimeOffset BirthDate { get; set; }
     }
 

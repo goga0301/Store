@@ -1,4 +1,5 @@
 ﻿using Store.Domain.Entities.Base;
+using Store.Domain.Entities.Enums;
 
 namespace Store.Domain.Entities
 {
@@ -11,7 +12,7 @@ namespace Store.Domain.Entities
         public string Email { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-        public string Gender { get; set; }
+        public GenderEnum Gender { get; set; }
         public DateTimeOffset BirthDate { get; set; }
 
     }
