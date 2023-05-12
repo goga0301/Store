@@ -12,7 +12,6 @@ namespace Store.Domain.Models.Mappers
                 Id = customer.Id,
                 FirstName = customer.FirstName,
                 LastName = customer.LastName,
-                Address = customer.Address,
                 PhoneNumber = customer.PhoneNumber,
                 Email = customer.Email,
                 UserName = customer.UserName,

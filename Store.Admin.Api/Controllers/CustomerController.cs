@@ -1,9 +1,7 @@
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Store.Admin.Handlers.Commands.Customers;
-using Store.Admin.Handlers.Commands.MainCategories;
 using Store.Admin.Handlers.Queries.Customers;
-using Store.Admin.Handlers.Queries.MainCategories;
 using Store.Domain.Models.Domain;
 using Store.Shared.Helpers;
 
@@ -31,7 +29,7 @@ namespace Store.Admin.Api.Controllers
         [HttpGet("GetAll")]
         public async Task<IApiResponse> GetAll()
         {
-            return await _mediator.Send(new GetMainCategoriesQuery());
+            return await _mediator.Send(new GetCustomersQuery());
         }
 
         [HttpPost("Create")]

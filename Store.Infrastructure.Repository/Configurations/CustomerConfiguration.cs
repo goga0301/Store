@@ -11,7 +11,6 @@ namespace Store.Infrastructure.Repository.Configurations
         {
             builder.Property(x => x.FirstName).HasColumnName("FirstName").HasColumnType("varchar").HasMaxLength(30).IsRequired();
             builder.Property(x => x.LastName).HasColumnName("LastName").HasColumnType("varchar").HasMaxLength(50).IsRequired();
-            builder.Property(x => x.Address).HasColumnName("Address").HasColumnType("varchar").HasMaxLength(200).IsRequired();
             builder.Property(x => x.PhoneNumber).HasColumnName("PhoneNumber").HasColumnType("varchar").HasMaxLength(20).IsRequired();
             builder.Property(x => x.Email).HasColumnName("Email").HasColumnType("varchar").HasMaxLength(100).IsRequired();
             builder.Property(x => x.UserName).HasColumnName("UserName").HasColumnType("varchar").HasMaxLength(30).IsRequired();

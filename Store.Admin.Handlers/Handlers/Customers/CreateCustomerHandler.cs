@@ -4,12 +4,6 @@ using Store.Domain.Entities;
 using Store.Domain.Entities.Enums;
 using Store.Domain.Repository;
 using Store.Shared.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace Store.Admin.Handlers.Handlers.Customers
@@ -29,7 +23,6 @@ namespace Store.Admin.Handlers.Handlers.Customers
                 {
                     FirstName = request.Model.FirstName,
                     LastName = request.Model.LastName,
-                    Address = request.Model.Address,
                     PhoneNumber = request.Model.PhoneNumber,
                     Email = request.Model.Email,
                     UserName = request.Model.UserName,

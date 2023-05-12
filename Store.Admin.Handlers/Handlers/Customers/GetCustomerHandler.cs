@@ -4,11 +4,6 @@ using Store.Domain.Models.Domain;
 using Store.Domain.Models.Mappers;
 using Store.Domain.Repository;
 using Store.Shared.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Store.Admin.Handlers.Handlers.Customers
 {

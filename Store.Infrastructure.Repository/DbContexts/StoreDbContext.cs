@@ -10,6 +10,7 @@ namespace Store.Infrastructure.Repository.DbContexts
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<MainCategory> MainCategories { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Address> Addresses { get; set; }
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {
         }

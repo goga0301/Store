@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Store.Infrastructure.Repository.DbContexts;
 
@@ -10,9 +11,10 @@ using Store.Infrastructure.Repository.DbContexts;
 namespace Store.Infrastructure.Migrations.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    partial class StoreDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230512184918_AddedAddress")]
+    partial class AddedAddress
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -100,6 +102,12 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasColumnName("Id");
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar2(200)")
+                        .HasColumnName("Address");
 
                     b.Property<DateTimeOffset>("BirthDate")
                         .HasColumnType("datetimeoffset")
@@ -321,7 +329,7 @@ namespace Store.Infrastructure.Migrations.Migrations
             modelBuilder.Entity("Store.Domain.Entities.Address", b =>
                 {
                     b.HasOne("Store.Domain.Entities.Customer", "Customer")
-                        .WithMany()
+                        .WithMany("Addresses")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
@@ -349,6 +357,11 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .IsRequired();
 
                     b.Navigation("MainCategory");
+                });
+
+            modelBuilder.Entity("Store.Domain.Entities.Customer", b =>
+                {
+                    b.Navigation("Addresses");
                 });
 #pragma warning restore 612, 618
         }

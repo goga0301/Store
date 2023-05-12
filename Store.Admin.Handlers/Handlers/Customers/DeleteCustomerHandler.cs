@@ -2,11 +2,6 @@
 using Store.Admin.Handlers.Commands.Customers;
 using Store.Domain.Repository;
 using Store.Shared.Helpers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace Store.Admin.Handlers.Handlers.Customers

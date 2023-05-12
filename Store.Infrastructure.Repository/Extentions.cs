@@ -28,6 +28,7 @@ namespace Store.Infrastructure.Repository
             services.AddScoped<IProductCategoryRepository, ProductCategoryRepository>();
             services.AddScoped<IMainCategoryRepository, MainCategoryRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IAddressRepository, AddressRepository>();
             
         }
 
