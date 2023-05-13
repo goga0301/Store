@@ -2,15 +2,10 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Store.Domain.Entities;
 using Store.Infrastructure.Repository.Configurations.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Unicode;
-using System.Threading.Tasks;
 
 namespace Store.Infrastructure.Repository.Configurations
 {

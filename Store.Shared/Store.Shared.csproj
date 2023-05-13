@@ -14,4 +14,9 @@
     <PackageReference Include="NLog.Extensions.Logging" Version="5.2.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\RabbitMQ.Domain.Core\RabbitMQ.Domain.Core.csproj" />
+    <ProjectReference Include="..\RabbitMQ.Infrastructure.Bus\RabbitMQ.Infrastructure.Bus.csproj" />
+  </ItemGroup>
+
 </Project>

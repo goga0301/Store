@@ -1,6 +1,7 @@
 using Store.Admin.Handlers.Queries.Products;
 using Store.Infrastructure.Repository;
 using Store.Infrastructure.Service;
+using Store.Shared;
 using Store.Shared.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,6 +17,7 @@ builder.Services.AddMediatR(x =>
 {
     x.RegisterServicesFromAssembly(typeof(GetProductQuery).Assembly);
 });
+builder.Services.AddRabbitMQServices();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,14 +1,14 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <OutputType>Library</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\RabbitMQ.Domain.Core\RabbitMQ.Domain.Core.csproj" />
-    <ProjectReference Include="..\Store.Domain\Store.Domain.csproj" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
   </ItemGroup>
 
 </Project>
