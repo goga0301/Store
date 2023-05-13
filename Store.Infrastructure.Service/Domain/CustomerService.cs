@@ -35,7 +35,7 @@ namespace Store.Infrastructure.Service.Domain
 
         public async Task<CustomerModel> GetCustomerByIdAsync(int id)
         {
-            var customer = await _customerRepository.GetSingleAsync(x => x.Id == id, i => i.Addresses, i => i.Cards );
+            var customer = await _customerRepository.GetSingleAsync(x => x.Id == id, i => i.Addresses, i => i.Cards, i => i.Orders );
             if (customer == null)
             {
                 throw new Exception("მომხმარებელი ვერ მოიძებნა");
@@ -65,7 +65,7 @@ namespace Store.Infrastructure.Service.Domain
         }
         public async Task<IEnumerable<CustomerModel>> GetAllCustomers()
         {
-            return (await _customerRepository.GetAllAsync(i => i.Addresses, i => i.Cards )).Select(x => x.Map());
+            return (await _customerRepository.GetAllAsync(i => i.Addresses, i => i.Cards, i => i.Orders)).Select(x => x.Map());
         }
     }
 }

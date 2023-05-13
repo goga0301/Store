@@ -13,5 +13,6 @@ namespace Store.Domain.Entities
         public string? Floor { get; set; }
         public int CustomerId { get; set; }
         public virtual Customer Customer { get; set; }
+
     }
 }

@@ -15,6 +15,7 @@ namespace Store.Domain.Models.Domain
         public DateTimeOffset BirthDate { get; set; }
         public virtual IEnumerable<AddressModel>? Addresses { get; set; }
         public virtual IEnumerable<CardModel>? Cards { get; set; }
+        public virtual IEnumerable<OrderModel>? Orders { get; set; }
         public DateTimeOffset CreateDate { get; set; }
         public RecordStatusEnum RecordStatus { get; set; }
         public string CreateUserId { get; set; }
@@ -45,6 +46,15 @@ namespace Store.Domain.Models.Domain
         public string Password { get; set; }
         public GenderEnum Gender { get; set; }
         public DateTimeOffset BirthDate { get; set; }
+    }
+
+    public class CustomerModelForOrder
+    {
+        public int Id { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
     }
 
     public class DeleteCustomerModel

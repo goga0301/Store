@@ -21,6 +21,7 @@ namespace Store.Domain.Models.Mappers
                 BirthDate = customer.BirthDate,
                 Addresses = customer.Addresses?.Select(x => x.Map()),
                 Cards = customer.Cards?.Select(x => x.Map()),
+                Orders = customer.Orders?.Select(x => x.Map()),
                 RecordStatus = customer.RecordStatus,
                 CreateDate = customer.CreateDate,
                 CreateUserId = customer.CreateUserId
@@ -42,6 +43,18 @@ namespace Store.Domain.Models.Mappers
                 RecordStatus = RecordStatusEnum.Active,
                 CreateDate = DateTime.Now,
                 CreateUserId = "test"
+            };
+        }
+
+        public static CustomerModelForOrder MapForOrder(this Customer source)
+        {
+            return new CustomerModelForOrder
+            {
+                Id = source.Id,
+                FirstName = source.FirstName,
+                LastName = source.LastName,
+                PhoneNumber = source.PhoneNumber,
+                Email = source.Email
             };
         }
 

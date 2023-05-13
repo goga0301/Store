@@ -15,6 +15,7 @@ namespace Store.Domain.Entities
         public DateTimeOffset BirthDate { get; set; }
         public virtual IEnumerable<Card>? Cards { get; set; }
         public virtual IEnumerable<Address>? Addresses { get; set; }
+        public virtual IEnumerable<Order>? Orders { get; set; }
 
     }
 }

@@ -42,5 +42,21 @@ namespace Store.Domain.Models.Mappers
                 CreateUserId = "test"
             };
         }
+
+        public static AddressModelForOrder MapForOrder(this Address source)
+        {
+            return new AddressModelForOrder
+            {
+                Id = source.Id,
+                CustomerId = source.CustomerId,
+                StreetAddress = source.StreetAddress,
+                City = source.City,
+                StateOrProvince = source.StateOrProvince,
+                PostalCode = source.PostalCode,
+                Country = source.Country,
+                Building = source.Building,
+                Floor = source.Floor
+            };
+        }
     }
 }
