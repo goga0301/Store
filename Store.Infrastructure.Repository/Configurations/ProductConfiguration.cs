@@ -15,7 +15,7 @@ namespace Store.Infrastructure.Repository.Configurations
             builder.Property(x => x.Stock).HasColumnName("Stock").IsRequired();
             builder.Property(x => x.ImageUrl).HasColumnName("ImageUrl").HasColumnType("varchar").HasMaxLength(500);
 
-            builder.HasOne(x => x.ProductCategory).WithMany().HasForeignKey(x => x.ProductCategoryId);
+            builder.HasOne(x => x.ProductCategory).WithMany(x => x.Products).HasForeignKey(x => x.ProductCategoryId);
 
             builder.HasIndex(x => x.ProductCategoryId);
         }

@@ -1,8 +1,6 @@
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Store.Admin.Handlers.Commands.Customers;
-using Store.Admin.Handlers.Queries.Customers;
+﻿using Microsoft.AspNetCore.Mvc;
 using Store.Domain.Models.Domain;
+using Store.Domain.Service.Domain;
 using Store.Shared.Helpers;
 
 namespace Store.Admin.Api.Controllers
@@ -12,43 +10,48 @@ namespace Store.Admin.Api.Controllers
     public class CustomerController : ControllerBase
     {
         private readonly ILogger<CustomerController> _logger;
-        private readonly IMediator _mediator;
+        private readonly ICustomerService _customerService;
 
-        public CustomerController(IMediator mediator, ILogger<CustomerController> logger)
+        public CustomerController(ICustomerService customerService, ILogger<CustomerController> logger)
         {
-            _mediator = mediator;
+            _customerService = customerService;
             _logger = logger;
         }
 
         [HttpGet("Get")]
         public async Task<IApiResponse> Get(int Id)
         {
-            return await _mediator.Send(new GetCustomerQuery(Id));
+            var result = await _customerService.GetCustomerByIdAsync(Id);
+            return ApiResponse<CustomerModel>.Success(result);
         }
+
 
         [HttpGet("GetAll")]
         public async Task<IApiResponse> GetAll()
         {
-            return await _mediator.Send(new GetCustomersQuery());
+            var result = await _customerService.GetAllCustomers();
+            return ApiResponse<IEnumerable<CustomerModel>>.Success(result);
         }
 
         [HttpPost("Create")]
-        public async Task<IApiResponse> Create([FromBody] CreateCustomerModel Customer)
+        public Task<IApiResponse> Create([FromBody] CreateCustomerModel customer)
         {
-
-            return await _mediator.Send(new CreateCustomerCommand(Customer));
+            _customerService.AddCustomer(customer);
+            return Task.FromResult(ApiResponse.Success("მომხმარებელი დაემატა"));
         }
 
         [HttpPut("Update")]
-        public async Task<IApiResponse> Update([FromBody] UpdateCustomerModel Customer)
+        public Task<IApiResponse> Update([FromBody] UpdateCustomerModel customer)
         {
-            return await _mediator.Send(new UpdateCustomerCommand(Customer));
+            _customerService.UpdateCustomer(customer);
+            return Task.FromResult(ApiResponse.Success("მომხმარებელი განახლდა"));
         }
 
         [HttpDelete("Delete")]
-        public async Task<IApiResponse> Delete([FromBody] DeleteCustomerModel Customer)
+        public Task<IApiResponse> Delete(int Id)
         {
-            return await _mediator.Send(new DeleteCustomerCommand(Customer));
+            _customerService.DeleteCustomer(Id);
+            return Task.FromResult(ApiResponse.Success("მომხმარებელი წაიშალა"));
         }
     }
 }

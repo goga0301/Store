@@ -13,6 +13,8 @@ namespace Store.Domain.Models.Domain
         public string Password { get; set; }
         public GenderEnum Gender { get; set; }
         public DateTimeOffset BirthDate { get; set; }
+        public virtual IEnumerable<AddressModel>? Addresses { get; set; }
+        public virtual IEnumerable<CardModel>? Cards { get; set; }
         public DateTimeOffset CreateDate { get; set; }
         public RecordStatusEnum RecordStatus { get; set; }
         public string CreateUserId { get; set; }

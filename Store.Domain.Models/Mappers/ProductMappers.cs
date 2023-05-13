@@ -1,4 +1,5 @@
 ﻿using Store.Domain.Entities;
+using Store.Domain.Entities.Enums;
 using Store.Domain.Models.Domain;
 
 namespace Store.Domain.Models.Mappers
@@ -22,5 +23,23 @@ namespace Store.Domain.Models.Mappers
                 
             };
         }
+
+        public static Product MapForCreate(this CreateProductModel source)
+        {
+            return new Product
+            {
+                Name = source.Name,
+                Description = source.Description,
+                Price = source.Price,
+                Stock = source.Stock,
+                ImageUrl = source.ImageUrl,
+                ProductCategoryId = source.ProductCategoryId,
+                RecordStatus = RecordStatusEnum.Active,
+                CreateDate = DateTimeOffset.Now,
+                CreateUserId = "test"
+            };
+        }
+
+        
     }
 }

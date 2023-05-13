@@ -10,6 +10,11 @@ namespace Store.Infrastructure.Service
         {
             services.AddScoped<IProductService, ProductService>();
             services.AddScoped<IProductCategoryService, ProductCategoryService>();
+            services.AddScoped<IMainCategoryService, MainCategoryService>();
+            services.AddScoped<ICustomerService, CustomerService>();
+            services.AddScoped<IAddressService, AddressService>();
+            services.AddScoped<ICardService, CardService>();
+
         }
     }
 }

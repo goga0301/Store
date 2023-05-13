@@ -1,4 +1,5 @@
-﻿using Store.Domain.Entities;
+﻿using Store.Domain.Models.Domain;
+using Store.Domain.Models.Mappers;
 using Store.Domain.Repository;
 using Store.Domain.Service.Domain;
 
@@ -13,31 +14,50 @@ namespace Store.Infrastructure.Service.Domain
             _productCategoryRepository = productCategoryRepository;
         }
 
-        public async void AddProductCategory(ProductCategory productCategory)
+        public async void AddProductCategory(CreateProductCategoryModel productCategory)
         {
-            _productCategoryRepository.Create(productCategory);
+            _productCategoryRepository.Create(productCategory.Map());
             await _productCategoryRepository.SaveChangesAsync();
         }
 
-        public async void DeleteProductCategory(ProductCategory productCategory)
+        public async void DeleteProductCategory(int Id)
         {
+            var productCategory = await _productCategoryRepository.GetSingleAsync(x => x.Id == Id);
+            if (productCategory == null)
+            {
+                throw new Exception("პროდუქტის კატეგორია ვერ მოიძებნა");
+            }
             _productCategoryRepository.SoftDelete(productCategory);
             await _productCategoryRepository.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<ProductCategory>> GetAllProductCategories()
+        public async Task<IEnumerable<ProductCategoryModel>> GetAllProductCategories()
         {
-            return await _productCategoryRepository.GetAllAsync();
+            return (await _productCategoryRepository.GetAllAsync((i => new object[] { i.Products }))).Select(x => x.Map());
         }
 
-        public async Task<ProductCategory?> GetProductCategoryByIdAsync(int id)
+        public async Task<ProductCategoryModel> GetProductCategoryByIdAsync(int id)
         {
-            return await _productCategoryRepository.GetSingleAsync(x => x.Id == id);
+            var productCategory = await _productCategoryRepository.GetSingleAsync(x => x.Id == id);
+            if (productCategory == null)
+            {
+                throw new Exception("პროდუქტის კატეგორია ვერ მოიძებნა");
+            }
+            return productCategory.Map();
         }
 
-        public async void UpdateProductCategory(ProductCategory productCategory)
+        public async void UpdateProductCategory(UpdateProductCategoryModel productCategory)
         {
-            _productCategoryRepository.Update(productCategory);
+            var category = await _productCategoryRepository.GetSingleAsync(x => x.Id == productCategory.Id, i => i.Products );
+            if (category == null)
+            {
+                throw new Exception("პროდუქტის კატეგორია ვერ მოიძებნა");
+            }
+            category.Name = productCategory.Name;
+            category.Description = productCategory.Description;
+            category.MainCategoryId = productCategory.MainCategoryId;
+
+            _productCategoryRepository.Update(category);
             await _productCategoryRepository.SaveChangesAsync();
         }
     }

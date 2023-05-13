@@ -1,8 +1,6 @@
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Store.Admin.Handlers.Commands.Products;
-using Store.Admin.Handlers.Queries.Products;
+﻿using Microsoft.AspNetCore.Mvc;
 using Store.Domain.Models.Domain;
+using Store.Domain.Service.Domain;
 using Store.Shared.Helpers;
 
 namespace Store.Admin.Api.Controllers
@@ -12,44 +10,50 @@ namespace Store.Admin.Api.Controllers
     public class ProductController : ControllerBase
     {
         private readonly ILogger<ProductController> _logger;
-        private readonly IMediator _mediator;
+        private readonly IProductService _productService;
 
-        public ProductController(IMediator mediator, ILogger<ProductController> logger)
+        public ProductController(IProductService productService, ILogger<ProductController> logger)
         {
-            _mediator = mediator;
+            _productService = productService;
             _logger = logger;
         }
 
         [HttpGet("Get")]
         public async Task<IApiResponse> Get(int Id)
         {
-            return await _mediator.Send(new GetProductQuery(Id));
+            var result = await _productService.GetProductByIdAsync(Id);
+            return ApiResponse<ProductModel>.Success(result);
         }
 
 
         [HttpGet("GetAll")]
         public async Task<IApiResponse> GetAll()
         {
-            return await _mediator.Send(new GetProductsQuery());
+            var result = await _productService.GetAllProducts();
+            return ApiResponse<IEnumerable<ProductModel>>.Success(result);
         }
 
         [HttpPost("Create")]
-        public async Task<IApiResponse> Create([FromBody] CreateProductModel product)
+        public Task<IApiResponse> Create([FromBody] CreateProductModel product)
         {
-            return await _mediator.Send(new CreateProductCommand(product));
+            _productService.AddProduct(product);
+            return Task.FromResult(ApiResponse.Success("პროდუქტი დაემატა"));
         }
 
         [HttpPut("Update")]
-        public async Task<IApiResponse> Update([FromBody] UpdateProductModel product)
+        public Task<IApiResponse> Update([FromBody] UpdateProductModel product)
         {
-            return await _mediator.Send(new UpdateProductCommand(product));
+            _productService.UpdateProduct(product);
+            return Task.FromResult(ApiResponse.Success("პროდუქტი განახლდა"));
         }
-         
+
         [HttpDelete("Delete")]
-        public async Task<IApiResponse> Delete([FromBody] DeleteProductModel product)
+        public Task<IApiResponse> Delete(int Id)
         {
-            return await _mediator.Send(new DeleteProductCommand(product));
+            _productService.DeleteProduct(Id);
+            return Task.FromResult(ApiResponse.Success("პროდუქტი წაიშალა"));
         }
-        
+
     }
 }
+

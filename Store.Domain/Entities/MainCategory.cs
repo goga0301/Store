@@ -5,5 +5,6 @@ namespace Store.Domain.Entities
     {
         public string Name { get; set; }
         public string? Description { get; set; }
+        public virtual IEnumerable<ProductCategory>? ProductCategories { get; set; }
     }
 }

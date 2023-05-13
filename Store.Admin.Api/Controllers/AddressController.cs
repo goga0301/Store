@@ -1,8 +1,6 @@
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Store.Admin.Handlers.Commands.Addresses;
-using Store.Admin.Handlers.Queries.Addresses;
+﻿using Microsoft.AspNetCore.Mvc;
 using Store.Domain.Models.Domain;
+using Store.Domain.Service.Domain;
 using Store.Shared.Helpers;
 
 namespace Store.Admin.Api.Controllers
@@ -12,43 +10,48 @@ namespace Store.Admin.Api.Controllers
     public class AddressController : ControllerBase
     {
         private readonly ILogger<AddressController> _logger;
-        private readonly IMediator _mediator;
+        private readonly IAddressService _addressService;
 
-        public AddressController(IMediator mediator, ILogger<AddressController> logger)
+        public AddressController(IAddressService addressService, ILogger<AddressController> logger)
         {
-            _mediator = mediator;
+            _addressService = addressService;
             _logger = logger;
         }
 
         [HttpGet("Get")]
         public async Task<IApiResponse> Get(int Id)
         {
-            return await _mediator.Send(new GetAddressQuery(Id));
+            var result = await _addressService.GetAddressByIdAsync(Id);
+            return ApiResponse<AddressModel>.Success(result);
         }
+
 
         [HttpGet("GetAll")]
         public async Task<IApiResponse> GetAll()
         {
-            return await _mediator.Send(new GetAddressesQuery());
+            var result = await _addressService.GetAllAddresss();
+            return ApiResponse<IEnumerable<AddressModel>>.Success(result);
         }
 
         [HttpPost("Create")]
-        public async Task<IApiResponse> Create([FromBody] CreateAddressModel Address)
+        public Task<IApiResponse> Create([FromBody] CreateAddressModel address)
         {
-
-            return await _mediator.Send(new CreateAddressCommand(Address));
+            _addressService.AddAddress(address);
+            return Task.FromResult(ApiResponse.Success("მისამართი დაემატა"));
         }
 
         [HttpPut("Update")]
-        public async Task<IApiResponse> Update([FromBody] UpdateAddressModel Address)
+        public Task<IApiResponse> Update([FromBody] UpdateAddressModel address)
         {
-            return await _mediator.Send(new UpdateAddressCommand(Address));
+            _addressService.UpdateAddress(address);
+            return Task.FromResult(ApiResponse.Success("მისამართი განახლდა"));
         }
 
         [HttpDelete("Delete")]
-        public async Task<IApiResponse> Delete([FromBody] DeleteAddressModel Address)
+        public Task<IApiResponse> Delete(int Id)
         {
-            return await _mediator.Send(new DeleteAddressCommand(Address));
+            _addressService.DeleteAddress(Id);
+            return Task.FromResult(ApiResponse.Success("მისამართი წაიშალა"));
         }
     }
 }

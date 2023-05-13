@@ -16,6 +16,8 @@ namespace Store.Infrastructure.Repository.Configurations
             builder.Property(x => x.Building).HasMaxLength(50);
             builder.Property(x => x.Floor).HasMaxLength(50);
 
+            builder.HasOne(x => x.Customer).WithMany(x => x.Addresses).HasForeignKey(x => x.CustomerId);
+
             builder.HasIndex(x => x.PostalCode);
             builder.HasIndex(x => x.CustomerId);
             builder.HasIndex(x => x.City);

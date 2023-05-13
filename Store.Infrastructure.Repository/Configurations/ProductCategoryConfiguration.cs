@@ -12,7 +12,7 @@ namespace Store.Infrastructure.Repository.Configurations
             builder.Property(x => x.Description).HasColumnName("Description").HasColumnType("varchar").HasMaxLength(300);
             builder.Property(x => x.MainCategoryId).HasColumnName("MainCategoryId").IsRequired();
 
-            builder.HasOne(x => x.MainCategory).WithMany().HasForeignKey(x => x.MainCategoryId);
+            builder.HasOne(x => x.MainCategory).WithMany(x => x.ProductCategories).HasForeignKey(x => x.MainCategoryId);
 
             builder.HasIndex(x => x.MainCategoryId);
 

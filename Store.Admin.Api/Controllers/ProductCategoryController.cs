@@ -1,8 +1,6 @@
-using MediatR;
-using Microsoft.AspNetCore.Mvc;
-using Store.Admin.Handlers.Commands.ProductCategories;
-using Store.Admin.Handlers.Queries.ProductCategories;
+﻿using Microsoft.AspNetCore.Mvc;
 using Store.Domain.Models.Domain;
+using Store.Domain.Service.Domain;
 using Store.Shared.Helpers;
 
 namespace Store.Admin.Api.Controllers
@@ -12,46 +10,49 @@ namespace Store.Admin.Api.Controllers
     public class ProductCategoryController : ControllerBase
     {
         private readonly ILogger<ProductCategoryController> _logger;
-        private readonly IMediator _mediator;
+        private readonly IProductCategoryService _productCategoryService;
 
-        public ProductCategoryController(IMediator mediator, ILogger<ProductCategoryController> logger)
+        public ProductCategoryController(IProductCategoryService productCategoryService, ILogger<ProductCategoryController> logger)
         {
-            _mediator = mediator;
+            _productCategoryService = productCategoryService;
             _logger = logger;
         }
 
         [HttpGet("Get")]
         public async Task<IApiResponse> Get(int Id)
         {
-            return await _mediator.Send(new GetProductCategoryQuery(Id));
+            var result = await _productCategoryService.GetProductCategoryByIdAsync(Id);
+            return ApiResponse<ProductCategoryModel>.Success(result);
         }
-
 
 
         [HttpGet("GetAll")]
         public async Task<IApiResponse> GetAll()
         {
-            return await _mediator.Send(new GetProductCategoriesQuery());
+            var result = await _productCategoryService.GetAllProductCategories();
+            return ApiResponse<IEnumerable<ProductCategoryModel>>.Success(result);
         }
 
         [HttpPost("Create")]
-        public async Task<IApiResponse> Create([FromBody] CreateProductCategoryModel productCategory)
+        public Task<IApiResponse> Create([FromBody] CreateProductCategoryModel product)
         {
-            
-            return await _mediator.Send(new CreateProductCategoryCommand(productCategory));
+            _productCategoryService.AddProductCategory(product);
+            return Task.FromResult(ApiResponse.Success("პროდუქტის კატეგორია დაემატა"));
         }
 
         [HttpPut("Update")]
-        public async Task<IApiResponse> Update([FromBody] UpdateProductCategoryModel productCategory)
+        public Task<IApiResponse> Update([FromBody] UpdateProductCategoryModel product)
         {
-            return await _mediator.Send(new UpdateProductCategoryCommand(productCategory));
+            _productCategoryService.UpdateProductCategory(product);
+            return Task.FromResult(ApiResponse.Success("პროდუქტის კატეგორიას კატეგორია განახლდა"));
         }
 
         [HttpDelete("Delete")]
-        public async Task<IApiResponse> Delete([FromBody] DeleteProductCategoryModel productCategory)
+        public Task<IApiResponse> Delete(int Id)
         {
-            return await _mediator.Send(new DeleteProductCategoryCommand(productCategory));
+            _productCategoryService.DeleteProductCategory(Id);
+            return Task.FromResult(ApiResponse.Success("პროდუქტის კატეგორიას კატეგორია წაიშალა"));
         }
-        
+
     }
 }

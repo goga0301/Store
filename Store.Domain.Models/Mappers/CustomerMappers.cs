@@ -1,4 +1,5 @@
 ﻿using Store.Domain.Entities;
+using Store.Domain.Entities.Enums;
 using Store.Domain.Models.Domain;
 
 namespace Store.Domain.Models.Mappers
@@ -17,9 +18,30 @@ namespace Store.Domain.Models.Mappers
                 UserName = customer.UserName,
                 Password = customer.Password,
                 Gender = customer.Gender,
+                BirthDate = customer.BirthDate,
+                Addresses = customer.Addresses?.Select(x => x.Map()),
+                Cards = customer.Cards?.Select(x => x.Map()),
                 RecordStatus = customer.RecordStatus,
                 CreateDate = customer.CreateDate,
                 CreateUserId = customer.CreateUserId
+            };
+        }
+
+        public static Customer Map(this CreateCustomerModel source)
+        {
+            return new Customer
+            {
+                FirstName = source.FirstName,
+                LastName = source.LastName,
+                PhoneNumber = source.PhoneNumber,
+                Email = source.Email,
+                UserName = source.UserName,
+                Password = source.Password,
+                Gender = source.Gender,
+                BirthDate = source.BirthDate,
+                RecordStatus = RecordStatusEnum.Active,
+                CreateDate = DateTime.Now,
+                CreateUserId = "test"
             };
         }
 

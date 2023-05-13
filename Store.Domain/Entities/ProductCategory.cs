@@ -7,5 +7,6 @@ namespace Store.Domain.Entities
         public string? Description { get; set; }
         public int MainCategoryId { get; set; }
         public virtual MainCategory MainCategory { get; set; }
+        public virtual IEnumerable<Product>? Products { get; set; }
     }
 }
