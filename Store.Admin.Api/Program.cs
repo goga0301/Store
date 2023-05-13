@@ -1,6 +1,7 @@
 using Store.Admin.Handlers.Queries.Products;
 using Store.Infrastructure.Repository;
 using Store.Infrastructure.Service;
+using Store.Shared.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseError();
 
 app.UseHttpsRedirection();
 
