@@ -1,4 +1,5 @@
 ﻿using Store.Domain.Entities.Base;
+using Store.Domain.Entities.Enums;
 
 namespace Store.Domain.Entities
 {
@@ -8,8 +9,8 @@ namespace Store.Domain.Entities
         public virtual Customer Customer { get; set; }
         public int AddressId { get; set; }
         public virtual Address Address { get; set; }
+        public OrderStatusEnum Status { get; set; }
         public decimal Amount { get; set;  }
-        public bool IsPaid { get; set; }
         public int? TransactionId { get; set; }
         public IEnumerable<OrderItem>? OrderItems { get; set; }
 

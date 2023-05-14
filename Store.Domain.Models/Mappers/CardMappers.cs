@@ -38,5 +38,18 @@ namespace Store.Domain.Models.Mappers
                 CreateUserId = source.CreateUserId
             };
         }
+
+        public static CardModelForTransaction MapForOrder(this Card source)
+        {
+            return new CardModelForTransaction
+            {
+                Id = source.Id,
+                CardNumber = source.CardNumber,
+                CardholderName = source.CardholderName,
+                ExpirationDate = source.ExpirationDate,
+                CvvCode = source.CvvCode,
+                CardType = source.CardType
+            };
+        }
     }
 }

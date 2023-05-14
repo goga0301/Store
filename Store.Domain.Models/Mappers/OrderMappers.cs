@@ -12,7 +12,7 @@ namespace Store.Domain.Models.Mappers
             {
                 CustomerId = source.CustomerId,
                 AddressId = source.AddressId,
-                IsPaid = false,
+                Status = OrderStatusEnum.Created,
                 TransactionId = null,
                 OrderItems = source.OrderItems,
                 Amount = source.OrderItems == null || source.OrderItems.Count() == 0 ? 0 : source.OrderItems.Sum(x => x.UnitPrice * x.Quantity),
@@ -32,8 +32,8 @@ namespace Store.Domain.Models.Mappers
                 Customer = source.Customer.MapForOrder(),
                 AddressId = source.AddressId,
                 Address = source.Address.MapForOrder(),
+                Status = source.Status,
                 Amount = source.Amount,
-                IsPaid = source.IsPaid,
                 TransactionId = source.TransactionId,
                 OrderItems = source.OrderItems,
             };

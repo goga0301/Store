@@ -20,19 +20,18 @@ namespace Store.Infrastructure.Repository.Configurations
         {
             builder.Property(x => x.CustomerId).IsRequired();
             builder.Property(x => x.AddressId).IsRequired();
+            builder.Property(x => x.Status).IsRequired();
             builder.Property(x => x.Amount).IsRequired();
-            builder.Property(x => x.IsPaid).IsRequired();
             builder.Property(x => x.TransactionId);
             builder.Property(x => x.OrderItems).HasColumnType("nclob").HasConversion(
                         x => JsonSerializer.Serialize(x, _jsonOptions),
-                        y => JsonSerializer.Deserialize<IEnumerable<OrderItem>>(y, _jsonOptions)!)
-                   ;
+                        y => JsonSerializer.Deserialize<IEnumerable<OrderItem>>(y, _jsonOptions)!);
 
             builder.HasOne(x => x.Customer).WithMany(x => x.Orders).HasForeignKey(x => x.CustomerId);
             builder.HasOne(x => x.Address).WithMany().HasForeignKey(x => x.AddressId);
 
             builder.HasIndex(x => x.CustomerId);
-            builder.HasIndex(x => x.IsPaid);
+            builder.HasIndex(x => x.Status);
         }
     }
 }

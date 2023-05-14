@@ -41,5 +41,13 @@ namespace Store.Domain.Models.Domain
         public int Id { get; set; }
     }
 
-
+    public class CardModelForTransaction
+    {
+        public int Id { get; set; }
+        public string CardNumber { get; set; }
+        public string CardholderName { get; set; }
+        public DateTime ExpirationDate { get; set; }
+        public string CvvCode { get; set; }
+        public CardTypeEnum CardType { get; set; }
+    }
 }
