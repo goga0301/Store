@@ -12,6 +12,10 @@ namespace Store.Infrastructure.Repository.DbContexts
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Card> Cards { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+
+
         public StoreDbContext(DbContextOptions<StoreDbContext> options) : base(options)
         {
         }

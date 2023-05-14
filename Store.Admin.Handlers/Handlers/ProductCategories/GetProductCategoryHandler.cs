@@ -5,7 +5,7 @@ using Store.Admin.Handlers.Queries.ProductCategories;
 using Store.Domain.Models.Domain;
 using Store.Domain.Models.Mappers;
 using Store.Domain.Repository;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 
 namespace Store.Admin.Handlers.Handlers.ProductCategories
 {

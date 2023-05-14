@@ -3,7 +3,7 @@
 using MediatR;
 using Store.Admin.Handlers.Commands.Products;
 using Store.Domain.Repository;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 using System.Transactions;
 
 namespace Store.Admin.Handlers.Handlers.Products

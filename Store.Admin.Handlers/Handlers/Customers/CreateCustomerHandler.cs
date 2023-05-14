@@ -3,7 +3,7 @@ using Store.Admin.Handlers.Commands.Customers;
 using Store.Domain.Entities;
 using Store.Domain.Entities.Enums;
 using Store.Domain.Repository;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 using System.Transactions;
 
 namespace Store.Admin.Handlers.Handlers.Customers

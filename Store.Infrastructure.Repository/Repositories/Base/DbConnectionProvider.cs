@@ -1,5 +1,5 @@
 ﻿using Devart.Data.Oracle;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 using System.Data;
 
 namespace Store.Infrastructure.Repository.Repositories.Base

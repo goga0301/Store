@@ -469,14 +469,11 @@ namespace Store.Infrastructure.Migrations.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CardId")
-                        .IsUnique();
+                    b.HasIndex("CardId");
 
-                    b.HasIndex("CustomerId")
-                        .IsUnique();
+                    b.HasIndex("CustomerId");
 
-                    b.HasIndex("OrderId")
-                        .IsUnique();
+                    b.HasIndex("OrderId");
 
                     b.HasIndex("RecordStatus");
 
@@ -551,20 +548,20 @@ namespace Store.Infrastructure.Migrations.Migrations
             modelBuilder.Entity("Store.Domain.Entities.Transaction", b =>
                 {
                     b.HasOne("Store.Domain.Entities.Card", null)
-                        .WithOne()
-                        .HasForeignKey("Store.Domain.Entities.Transaction", "CardId")
+                        .WithMany()
+                        .HasForeignKey("CardId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Store.Domain.Entities.Customer", null)
-                        .WithOne()
-                        .HasForeignKey("Store.Domain.Entities.Transaction", "CustomerId")
+                        .WithMany()
+                        .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Store.Domain.Entities.Order", null)
-                        .WithOne()
-                        .HasForeignKey("Store.Domain.Entities.Transaction", "OrderId")
+                        .WithMany()
+                        .HasForeignKey("OrderId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

@@ -5,7 +5,7 @@ using Store.Domain.Repository;
 using Store.Infrastructure.Repository.DbContexts;
 using Store.Infrastructure.Repository.Repositories;
 using Store.Infrastructure.Repository.Repositories.Base;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 
 namespace Store.Infrastructure.Repository
 {

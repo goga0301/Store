@@ -2,7 +2,8 @@
 using System.Net;
 using System.Text.Json.Serialization;
 
-namespace Store.Shared.Helpers
+
+namespace Shared.Helpers
 {
     public interface IApiResponse
     {

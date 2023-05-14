@@ -2,7 +2,7 @@
 
 using MediatR;
 using Store.Domain.Models.Domain;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 
 namespace Store.Admin.Handlers.Commands.Products
 {

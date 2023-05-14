@@ -1,11 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Store.Domain.Entities;
 using Store.Infrastructure.Repository.Configurations.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Store.Infrastructure.Repository.Configurations
 {
@@ -19,9 +14,9 @@ namespace Store.Infrastructure.Repository.Configurations
             builder.Property(x => x.Amount).IsRequired();
             builder.Property(x => x.Status).IsRequired();
 
-            builder.HasOne<Order>().WithOne().HasForeignKey<Transaction>(x => x.OrderId);
-            builder.HasOne<Customer>().WithOne().HasForeignKey<Transaction>(x => x.CustomerId);
-            builder.HasOne<Card>().WithOne().HasForeignKey<Transaction>(x => x.CardId);
+            builder.HasOne<Order>().WithMany().HasForeignKey(x => x.OrderId);
+            builder.HasOne<Customer>().WithMany().HasForeignKey(x => x.CustomerId);
+            builder.HasOne<Card>().WithMany().HasForeignKey(x => x.CardId);
 
             builder.HasIndex(x => x.OrderId);
             builder.HasIndex(x => x.CustomerId);

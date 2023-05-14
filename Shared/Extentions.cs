@@ -2,9 +2,9 @@
 using Microsoft.Extensions.DependencyInjection;
 using RabbitMQ.Domains.Core.Bus;
 using RabbitMQ.Infrastructure.Bus;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 
-namespace Store.Shared
+namespace Shared
 {
     public static class Extentions
     {

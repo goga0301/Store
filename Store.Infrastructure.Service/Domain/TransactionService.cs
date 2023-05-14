@@ -3,11 +3,6 @@ using Store.Domain.Models.Domain;
 using Store.Domain.Models.Mappers;
 using Store.Domain.Repository;
 using Store.Domain.Service.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Store.Infrastructure.Service.Domain
 {

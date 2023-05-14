@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 using System.Net;
 using System.Text.Json;
 
-namespace Store.Shared.Helpers
+namespace Shared.Helpers
 {
     public class ErrorMiddleware
     {

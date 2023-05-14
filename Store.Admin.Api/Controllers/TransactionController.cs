@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Store.Domain.Models.Domain;
 using Store.Domain.Service.Domain;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 
 namespace Store.Admin.Api.Controllers
 {

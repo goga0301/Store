@@ -1,8 +1,8 @@
 using Store.Admin.Handlers.Queries.Products;
 using Store.Infrastructure.Repository;
 using Store.Infrastructure.Service;
-using Store.Shared;
-using Store.Shared.Helpers;
+using Shared;
+using Shared.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 

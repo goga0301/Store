@@ -1,6 +1,8 @@
-﻿using System.Linq.Expressions;
+﻿
 
-namespace Store.Shared.Helpers
+using System.Linq.Expressions;
+
+namespace Shared.Helpers
 {
     public static class PredicateBuilder
     {

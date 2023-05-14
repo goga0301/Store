@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Store.Domain.Entities.Base;
 using Store.Domain.Entities.Enums;
 using Store.Domain.Repository.Base;
-using Store.Shared.Helpers;
+using Shared.Helpers;
 using System.Linq.Expressions;
 
 namespace Store.Infrastructure.Repository.Repositories.Base
