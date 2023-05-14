@@ -4,7 +4,7 @@ namespace Store.Domain.Service.Domain
 {
     public interface ICardService
     {
-        void AddCard(CreateCardModel card);
+        Task<int> AddCard(CreateCardModel card);
         void UpdateCard(UpdateCardModel card);
         void DeleteCard(int Id);
         Task<CardModel> GetCardByIdAsync(int Id);

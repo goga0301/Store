@@ -2,7 +2,7 @@
 
 namespace Store.Domain.Repository.Base
 {
-    public interface IGenericRepository<TEntity> where TEntity : class
+    public interface IGenericRepository<TEntity, TKey> where TEntity : class
     {
         Task<TEntity?> GetAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includes);
         Task<TEntity?> GetSingleAsync(Expression<Func<TEntity, bool>> where, params Expression<Func<TEntity, object>>[] includes);
@@ -14,8 +14,8 @@ namespace Store.Domain.Repository.Base
         IQueryable<TEntity> GetAllQueryable(params Expression<Func<TEntity, object>>[] includes);
         Task<bool> AnyAsync(params Expression<Func<TEntity, bool>>[] where);
 
-        void Create(TEntity entity, bool trackGraph = false);
-        void CreateRange(IEnumerable<TEntity> entities, bool trackGraph = false);
+        Task<TKey> CreateAsync(TEntity entity, bool trackGraph = false);
+        Task<IEnumerable<TKey>> CreateRange(IEnumerable<TEntity> entities, bool trackGraph = false);
         void SoftDelete(TEntity entity, bool trackGraph = false);
         void SoftDeleteRange(IEnumerable<TEntity> entities, bool trackGraph = false);
         void Update(TEntity entity, bool trackGraph = false);

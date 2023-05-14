@@ -3,7 +3,7 @@ using Store.Domain.Repository.Base;
 
 namespace Store.Domain.Repository
 {
-    public interface ICardRepository : IGenericRepository<Card>
+    public interface ICardRepository : IGenericRepository<Card, int>
     {
 
     }

@@ -14,10 +14,9 @@ namespace Store.Infrastructure.Service.Domain
             _mainCategoryRepository = MainCategoryRepository;
         }
 
-        public async void AddMainCategory(CreateMainCategoryModel mainCategory)
+        public async Task<int> AddMainCategory(CreateMainCategoryModel mainCategory)
         {
-            _mainCategoryRepository.Create(mainCategory.Map());
-            await _mainCategoryRepository.SaveChangesAsync();
+            return await _mainCategoryRepository.CreateAsync(mainCategory.Map());
         }
 
         public async void DeleteMainCategory(int Id)

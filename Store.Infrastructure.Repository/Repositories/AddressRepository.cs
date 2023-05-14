@@ -5,7 +5,7 @@ using Store.Infrastructure.Repository.Repositories.Base;
 
 namespace Store.Infrastructure.Repository.Repositories
 {
-    public class AddressRepository : GenericRepository<StoreDbContext, Address>, IAddressRepository
+    public class AddressRepository : GenericRepository<StoreDbContext, Address, int>, IAddressRepository
     {
         public AddressRepository(StoreDbContext context) : base(context)
         {

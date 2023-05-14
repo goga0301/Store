@@ -30,8 +30,7 @@ namespace Store.Admin.Handlers.Handlers.ProductsCategories
                     CreateUserId = "test"
 
                 };
-                _productCategoryRepository.Create(productCategory);
-                await _productCategoryRepository.SaveChangesAsync();
+                await _productCategoryRepository.CreateAsync(productCategory);
                 scope.Complete();
                 return ApiResponse<int>.Success(productCategory.Id, "პროდუქტი წარმატებით შეიქმნა");
             }

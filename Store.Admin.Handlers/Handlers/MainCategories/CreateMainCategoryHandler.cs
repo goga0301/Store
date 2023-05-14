@@ -28,8 +28,7 @@ namespace Store.Admin.Handlers.Handlers.MainCategories
                     CreateUserId = "test"
                     
                 };
-                _mainCategoryRepository.Create(mainCategory);
-                await _mainCategoryRepository.SaveChangesAsync();
+                await _mainCategoryRepository.CreateAsync(mainCategory);
                 scope.Complete();
                 return ApiResponse<int>.Success(mainCategory.Id, "ძირითადი კატეგორია წარმატებით შეიქმნა");
             }

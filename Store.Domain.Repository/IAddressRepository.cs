@@ -3,7 +3,7 @@ using Store.Domain.Repository.Base;
 
 namespace Store.Domain.Repository
 {
-    public interface IAddressRepository : IGenericRepository<Address>
+    public interface IAddressRepository : IGenericRepository<Address, int>
     {
     }
 }

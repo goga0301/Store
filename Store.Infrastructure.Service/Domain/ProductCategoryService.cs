@@ -14,10 +14,10 @@ namespace Store.Infrastructure.Service.Domain
             _productCategoryRepository = productCategoryRepository;
         }
 
-        public async void AddProductCategory(CreateProductCategoryModel productCategory)
+        public async Task<int> AddProductCategory(CreateProductCategoryModel productCategory)
         {
-            _productCategoryRepository.Create(productCategory.Map());
-            await _productCategoryRepository.SaveChangesAsync();
+            return await _productCategoryRepository.CreateAsync(productCategory.Map());
+            
         }
 
         public async void DeleteProductCategory(int Id)

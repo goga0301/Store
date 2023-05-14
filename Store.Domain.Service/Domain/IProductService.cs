@@ -5,7 +5,7 @@ namespace Store.Domain.Service.Domain
 {
     public interface IProductService 
     {
-        void AddProduct(CreateProductModel product);
+        Task<int> AddProduct(CreateProductModel product);
         void UpdateProduct(UpdateProductModel product);
         void DeleteProduct(int Id);
         Task<ProductModel> GetProductByIdAsync(int Id);

@@ -5,7 +5,7 @@ using Store.Infrastructure.Repository.Repositories.Base;
 
 namespace Store.Infrastructure.Repository.Repositories
 {
-    public class CardRepository : GenericRepository<StoreDbContext, Card>, ICardRepository
+    public class CardRepository : GenericRepository<StoreDbContext, Card, int>, ICardRepository
     {
         public CardRepository(StoreDbContext context) : base(context)
         {

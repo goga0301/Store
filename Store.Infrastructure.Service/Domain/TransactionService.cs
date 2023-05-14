@@ -18,10 +18,9 @@ namespace Store.Infrastructure.Service.Domain
             _transactionRepository = transactionRepository;
         }
 
-        public async void AddTransaction(CreateTransactionModel transaction)
+        public async Task<int> AddTransaction(CreateTransactionModel transaction)
         {
-            _transactionRepository.Create(transaction.Map());
-            await _transactionRepository.SaveChangesAsync();
+            return await _transactionRepository.CreateAsync(transaction.Map());
         }
 
         public async void DeleteTransaction(int Id)

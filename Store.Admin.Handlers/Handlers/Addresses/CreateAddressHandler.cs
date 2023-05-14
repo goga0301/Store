@@ -33,8 +33,7 @@ namespace Store.Admin.Handlers.Handlers.Addresses
                     CreateDate = DateTime.UtcNow,
                     CreateUserId = "test"
                 };
-                _addressRepository.Create(address);
-                await _addressRepository.SaveChangesAsync();
+                await _addressRepository.CreateAsync(address);
                 scope.Complete();
 
                 return ApiResponse<int>.Success(address.Id,"მისამართი წარმატებით შეიქმნა");

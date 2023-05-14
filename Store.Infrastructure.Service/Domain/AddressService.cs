@@ -13,10 +13,9 @@ namespace Store.Infrastructure.Service.Domain
             _addressRepository = addressRepository;
         }
 
-        public async void AddAddress(CreateAddressModel address)
+        public async Task<int> AddAddress(CreateAddressModel address)
         {
-            _addressRepository.Create(address.Map());
-            await _addressRepository.SaveChangesAsync();
+            return await _addressRepository.CreateAsync(address.Map());
         }
 
         public async void DeleteAddress(int Id)

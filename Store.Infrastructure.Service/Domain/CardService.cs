@@ -13,10 +13,9 @@ namespace Store.Infrastructure.Service.Domain
             _cardRepository = cardRepository;
         }
 
-        public async void AddCard(CreateCardModel card)
+        public async Task<int> AddCard(CreateCardModel card)
         {
-            _cardRepository.Create(card.Map());
-            await _cardRepository.SaveChangesAsync();
+            return await _cardRepository.CreateAsync(card.Map());
         }
 
         public async void DeleteCard(int Id)

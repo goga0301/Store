@@ -33,8 +33,7 @@ namespace Store.Admin.Handlers.Handlers.Products
                     CreateUserId = "test"
 
                 };
-                _productRepository.Create(product);
-                await _productRepository.SaveChangesAsync();
+                await _productRepository.CreateAsync(product);
                 scope.Complete();
                 return ApiResponse<int>.Success(product.Id, "პროდუქტი წარმატებით შეიქმნა");
             }

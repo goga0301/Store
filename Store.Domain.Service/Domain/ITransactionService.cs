@@ -9,7 +9,7 @@ namespace Store.Domain.Service.Domain
 {
     public interface ITransactionService
     {
-        void AddTransaction(CreateTransactionModel transaction);
+        Task<int> AddTransaction(CreateTransactionModel transaction);
         void UpdateTransaction(UpdateTransactionModel transaction);
         void DeleteTransaction(int Id);
         Task<TransactionModel> GetTransactionByIdAsync(int Id);

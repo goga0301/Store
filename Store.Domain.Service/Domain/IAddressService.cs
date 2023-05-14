@@ -4,7 +4,7 @@ namespace Store.Domain.Service.Domain
 {
     public interface IAddressService
     {
-        void AddAddress(CreateAddressModel address);
+        Task<int> AddAddress(CreateAddressModel address);
         void UpdateAddress(UpdateAddressModel address);
         void DeleteAddress(int Id);
         Task<AddressModel> GetAddressByIdAsync(int Id);

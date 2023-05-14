@@ -13,10 +13,9 @@ namespace Store.Infrastructure.Service.Domain
             _productRepository = productRepository;
         }
 
-        public async void AddProduct(CreateProductModel product)
+        public async Task<int> AddProduct(CreateProductModel product)
         {
-            _productRepository.Create(product.MapForCreate());
-            await _productRepository.SaveChangesAsync();
+            return await _productRepository.CreateAsync(product.MapForCreate());
         }
 
         public async void DeleteProduct(int Id)

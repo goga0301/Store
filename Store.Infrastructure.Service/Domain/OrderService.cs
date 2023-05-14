@@ -13,10 +13,9 @@ namespace Store.Infrastructure.Service.Domain
             _orderRepository = orderRepository;
         }
 
-        public async void AddOrder(CreateOrderModel order)
+        public async Task<int> AddOrder(CreateOrderModel order)
         {
-            _orderRepository.Create(order.Map());
-            await _orderRepository.SaveChangesAsync();
+            return await _orderRepository.CreateAsync(order.Map());
         }
 
         public async void DeleteOrder(int Id)

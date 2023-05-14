@@ -3,7 +3,7 @@ using Store.Domain.Repository.Base;
 
 namespace Store.Domain.Repository
 {
-    public interface IProductCategoryRepository : IGenericRepository<ProductCategory>
+    public interface IProductCategoryRepository : IGenericRepository<ProductCategory, int>
     {
     }
 }

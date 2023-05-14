@@ -5,7 +5,7 @@ using Store.Infrastructure.Repository.Repositories.Base;
 
 namespace Store.Infrastructure.Repository.Repositories
 {
-    public class MainCategoryRepository : GenericRepository<StoreDbContext, MainCategory>, IMainCategoryRepository
+    public class MainCategoryRepository : GenericRepository<StoreDbContext, MainCategory, int>, IMainCategoryRepository
     {
         public MainCategoryRepository(StoreDbContext context) : base(context)
         {

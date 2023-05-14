@@ -8,7 +8,7 @@ using System.Linq.Expressions;
 
 namespace Store.Infrastructure.Repository.Repositories.Base
 {
-    public abstract class GenericRepository<TContext, TEntity> : IGenericRepository<TEntity>, IDisposable where TContext : DbContext where TEntity : class
+    public abstract class GenericRepository<TContext, TEntity, TKey> : IGenericRepository<TEntity, TKey>, IDisposable where TContext : DbContext where TEntity : class where TKey : struct
     {
         protected readonly TContext _context;
 
@@ -62,7 +62,7 @@ namespace Store.Infrastructure.Repository.Repositories.Base
             return await GetQueryable(where).AnyAsync().ConfigureAwait(false);
         }
 
-        public void Create(TEntity entity, bool trackGraph = false)
+        public async Task<TKey> CreateAsync(TEntity entity, bool trackGraph = false)
         {
             if (trackGraph)
             {
@@ -72,10 +72,14 @@ namespace Store.Infrastructure.Repository.Repositories.Base
             {
                 _context.Entry(entity).State = EntityState.Added;
             }
+            await SaveChangesAsync();
+            return _context.Entry(entity).Property<TKey>("Id").CurrentValue;
+
         }
 
-        public void CreateRange(IEnumerable<TEntity> entities, bool trackGraph = false)
+        public async Task<IEnumerable<TKey>> CreateRange(IEnumerable<TEntity> entities, bool trackGraph = false) 
         {
+            var result = new List<TKey>();
             if (trackGraph)
             {
                 _context.Set<TEntity>().AddRange(entities);
@@ -84,9 +88,10 @@ namespace Store.Infrastructure.Repository.Repositories.Base
             {
                 foreach (var entity in entities)
                 {
-                    Create(entity);
+                    result.Add((await CreateAsync(entity)));
                 }
             }
+            return result;
         }
 
         public void SoftDelete(TEntity entity, bool trackGraph = false)

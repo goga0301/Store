@@ -4,7 +4,7 @@ namespace Store.Domain.Service.Domain
 {
     public interface ICustomerService
     {
-        void AddCustomer(CreateCustomerModel customer);
+        Task<int> AddCustomer(CreateCustomerModel customer);
         void UpdateCustomer(UpdateCustomerModel customer);
         void DeleteCustomer(int Id);
         Task<CustomerModel> GetCustomerByIdAsync(int Id);

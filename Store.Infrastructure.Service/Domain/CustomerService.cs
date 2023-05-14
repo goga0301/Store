@@ -13,10 +13,9 @@ namespace Store.Infrastructure.Service.Domain
             _customerRepository = customerRepository;
         }
 
-        public async void AddCustomer(CreateCustomerModel customer)
+        public async Task<int> AddCustomer(CreateCustomerModel customer)
         {
-            _customerRepository.Create(customer.Map());
-            await _customerRepository.SaveChangesAsync();
+            return await _customerRepository.CreateAsync(customer.Map());
         }
 
         public async void DeleteCustomer(int Id)

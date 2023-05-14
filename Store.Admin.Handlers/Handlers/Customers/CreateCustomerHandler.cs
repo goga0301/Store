@@ -34,8 +34,7 @@ namespace Store.Admin.Handlers.Handlers.Customers
                     CreateUserId = "test"
                     
                 };
-                _customerRepository.Create(customer);
-                await _customerRepository.SaveChangesAsync();
+                await _customerRepository.CreateAsync(customer);
                 scope.Complete();
                 return ApiResponse<int>.Success(customer.Id, "კლიენტი წარმატებით შეიქმნა");
                 

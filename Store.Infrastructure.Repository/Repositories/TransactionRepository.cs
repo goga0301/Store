@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Store.Infrastructure.Repository.Repositories
 {
-    public class TransactionRepository : GenericRepository<StoreDbContext, Transaction>, ITransactionRepository
+    public class TransactionRepository : GenericRepository<StoreDbContext, Transaction, int>, ITransactionRepository
     {
         public TransactionRepository(StoreDbContext context) : base(context)
         {

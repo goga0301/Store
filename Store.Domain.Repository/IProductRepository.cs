@@ -3,7 +3,7 @@ using Store.Domain.Entities;
 
 namespace Store.Domain.Repository
 {
-    public interface IProductRepository : IGenericRepository<Product>
+    public interface IProductRepository : IGenericRepository<Product, int>
     {
     }
 }

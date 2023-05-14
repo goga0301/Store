@@ -5,7 +5,7 @@ using Store.Infrastructure.Repository.Repositories.Base;
 
 namespace Store.Infrastructure.Repository.Repositories
 {
-    public class OrderRepository : GenericRepository<StoreDbContext, Order>, IOrderRepository
+    public class OrderRepository : GenericRepository<StoreDbContext, Order, int>, IOrderRepository
     {
         public OrderRepository(StoreDbContext context) : base(context)
         {
