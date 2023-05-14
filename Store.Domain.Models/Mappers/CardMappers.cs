@@ -39,7 +39,7 @@ namespace Store.Domain.Models.Mappers
             };
         }
 
-        public static CardModelForTransaction MapForOrder(this Card source)
+        public static CardModelForTransaction MapForTransaction(this Card source)
         {
             return new CardModelForTransaction
             {

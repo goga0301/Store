@@ -34,10 +34,10 @@ namespace Store.Admin.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public Task<IApiResponse> Create([FromBody] CreateTransactionModel transaction)
+        public async Task<IApiResponse> Create([FromBody] CreateTransactionModel transaction)
         {
-            _transactionService.AddTransaction(transaction);
-            return Task.FromResult(ApiResponse.Success("ტრანზაქცია დაემატა"));
+            var Id = await _transactionService.AddTransaction(transaction);
+            return ApiResponse<int>.Success(Id, "ტრანზაქცია დაემატა") ;
         }
 
         [HttpPut("Update")]

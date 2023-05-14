@@ -33,10 +33,10 @@ namespace Store.Admin.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public Task<IApiResponse> Create([FromBody] CreateMainCategoryModel main)
+        public async Task<IApiResponse> Create([FromBody] CreateMainCategoryModel main)
         {
-            _mainCategoryService.AddMainCategory(main);
-            return Task.FromResult(ApiResponse.Success("ძირითადი კატეგორია დაემატა"));
+            var Id = await _mainCategoryService.AddMainCategory(main);
+            return ApiResponse<int>.Success(Id,"ძირითადი კატეგორია დაემატა");
         }
 
         [HttpPut("Update")]

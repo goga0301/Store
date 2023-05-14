@@ -17,6 +17,7 @@ namespace Store.Domain.Models.Mappers
             {
                 CustomerId = source.CustomerId,
                 CardId = source.CardId,
+                OrderId = source.OrderId,
                 Amount = source.Amount,
                 Status = TransactionStatusEnum.InProgress,
                 RecordStatus = RecordStatusEnum.Active,

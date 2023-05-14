@@ -34,10 +34,10 @@ namespace Store.Admin.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public Task<IApiResponse> Create([FromBody] CreateCardModel card)
+        public async Task<IApiResponse> Create([FromBody] CreateCardModel card)
         {
-            _cardService.AddCard(card);
-            return Task.FromResult(ApiResponse.Success("ბარათი დაემატა"));
+            var Id = await _cardService.AddCard(card);
+            return ApiResponse<int>.Success(Id,"ბარათი დაემატა");
         }
 
         [HttpPut("Update")]

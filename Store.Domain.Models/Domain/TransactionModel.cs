@@ -1,4 +1,6 @@
-﻿using Store.Domain.Entities.Enums;
+﻿using RabbitMQ.Domains.Core.Events;
+using Store.Domain.Entities;
+using Store.Domain.Entities.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +34,16 @@ namespace Store.Domain.Models.Domain
     {
         public int Id { get; set; }
         public TransactionStatusEnum Status { get; set; }
+    }
+
+    public class CreateTransactionEvent : Event
+    {
+        public int Id { get; set; }
+        public int OrderId { get; set; }
+        public int CustomerId { get; set; }
+        public CardModelForTransaction Card { get; set; }
+        public decimal Amount { get; set; }
+        public DateTimeOffset TransactionDate { get; set; }
     }
 
 

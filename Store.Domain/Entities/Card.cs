@@ -11,7 +11,6 @@ namespace Store.Domain.Entities
         public DateTime ExpirationDate { get; set; }
         public string CvvCode { get; set; }
         public CardTypeEnum CardType { get; set; }
-
         public virtual Customer Customer { get; set; }
     }
 }

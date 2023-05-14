@@ -34,10 +34,10 @@ namespace Store.Admin.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public Task<IApiResponse> Create([FromBody] CreateCustomerModel customer)
+        public async Task<IApiResponse> Create([FromBody] CreateCustomerModel customer)
         {
-            _customerService.AddCustomer(customer);
-            return Task.FromResult(ApiResponse.Success("მომხმარებელი დაემატა"));
+            var Id = await _customerService.AddCustomer(customer);
+            return ApiResponse<int>.Success(Id, "მომხმარებელი დაემატა");
         }
 
         [HttpPut("Update")]

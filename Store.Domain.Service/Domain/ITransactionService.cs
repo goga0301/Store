@@ -14,5 +14,7 @@ namespace Store.Domain.Service.Domain
         void DeleteTransaction(int Id);
         Task<TransactionModel> GetTransactionByIdAsync(int Id);
         Task<IEnumerable<TransactionModel>> GetAllTransactions();
+
+
     }
 }

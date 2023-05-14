@@ -34,10 +34,10 @@ namespace Store.Admin.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public Task<IApiResponse> Create([FromBody] CreateProductCategoryModel product)
+        public async Task<IApiResponse> Create([FromBody] CreateProductCategoryModel product)
         {
-            _productCategoryService.AddProductCategory(product);
-            return Task.FromResult(ApiResponse.Success("პროდუქტის კატეგორია დაემატა"));
+            var Id = await _productCategoryService.AddProductCategory(product);
+            return ApiResponse<int>.Success(Id, "პროდუქტის კატეგორია დაემატა");
         }
 
         [HttpPut("Update")]

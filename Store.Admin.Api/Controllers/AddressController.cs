@@ -34,10 +34,10 @@ namespace Store.Admin.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public Task<IApiResponse> Create([FromBody] CreateAddressModel address)
+        public async  Task<IApiResponse> Create([FromBody] CreateAddressModel address)
         {
-            _addressService.AddAddress(address);
-            return Task.FromResult(ApiResponse.Success("მისამართი დაემატა"));
+            var Id = await _addressService.AddAddress(address);
+            return ApiResponse<int>.Success(Id,"მისამართი დაემატა");
         }
 
         [HttpPut("Update")]

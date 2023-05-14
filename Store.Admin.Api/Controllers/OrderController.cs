@@ -34,10 +34,10 @@ namespace Store.Admin.Api.Controllers
         }
 
         [HttpPost("Create")]
-        public Task<IApiResponse> Create([FromBody] CreateOrderModel order)
+        public async Task<IApiResponse> Create([FromBody] CreateOrderModel order)
         {
-            _orderService.AddOrder(order);
-            return Task.FromResult(ApiResponse.Success("შეკვეთა დაემატა"));
+            var Id  = await _orderService.AddOrder(order);
+            return ApiResponse<int>.Success(Id, "შეკვეთა დაემატა");
         }
 
         [HttpPut("Update")]
