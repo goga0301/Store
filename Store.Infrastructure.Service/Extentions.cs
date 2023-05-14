@@ -15,6 +15,7 @@ namespace Store.Infrastructure.Service
             services.AddScoped<IAddressService, AddressService>();
             services.AddScoped<ICardService, CardService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<ITransactionService, TransactionService>();
 
         }
     }
