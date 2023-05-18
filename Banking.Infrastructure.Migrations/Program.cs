@@ -2,7 +2,6 @@
 
 using Banking.Infrastructure.Repository.DbContexts;
 using Microsoft.EntityFrameworkCore;
-using Shared.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 

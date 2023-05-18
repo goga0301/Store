@@ -1,6 +1,5 @@
 ﻿using Banking.Domain.Entities;
 using Banking.Infrastructure.Repository.Configurations.Base;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Banking.Infrastructure.Repository.Configurations

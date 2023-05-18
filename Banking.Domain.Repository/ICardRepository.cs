@@ -1,6 +1,9 @@
-﻿namespace Banking.Domain.Repository
+﻿using Banking.Domain.Entities;
+using Banking.Domain.Repository.Base;
+
+namespace Banking.Domain.Repository
 {
-    public class ICardRepository
+    public interface ICardRepository : IGenericRepository<Card, int>
     {
     }
 }
