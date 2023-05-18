@@ -23,7 +23,7 @@ namespace Store.Infrastructure.Repository.Configurations
             builder.Property(x => x.Status).IsRequired();
             builder.Property(x => x.Amount).IsRequired();
             builder.Property(x => x.TransactionId);
-            builder.Property(x => x.OrderItems).HasColumnType("nclob").HasConversion(
+            builder.Property(x => x.OrderItems).HasColumnType("nvarchar(max)").HasConversion(
                         x => JsonSerializer.Serialize(x, _jsonOptions),
                         y => JsonSerializer.Deserialize<IEnumerable<OrderItem>>(y, _jsonOptions)!);
 

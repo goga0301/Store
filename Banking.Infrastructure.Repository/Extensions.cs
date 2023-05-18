@@ -13,10 +13,9 @@ namespace Banking.Infrastructure.Repository
     {
         public static void AddDbContexts(this IServiceCollection services, IConfiguration configuration)
         {
-            var devartConfig = Devart.Data.Oracle.Entity.Configuration.OracleEntityProviderConfig.Instance;
-            devartConfig.Workarounds.DisableQuoting = true;
+            
 
-            services.AddDbContext<BankingDbContext>(x => x.UseOracle(configuration.GetConnectionString("StoreDb")));
+            services.AddDbContext<BankingDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("StoreDb")));
         }
 
         public static void AddRepositories(this IServiceCollection services)

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Store.Infrastructure.Repository.DbContexts;
 
@@ -17,8 +18,10 @@ namespace Store.Infrastructure.Migrations.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasDefaultSchema("StoreDb")
-                .HasAnnotation("ProductVersion", "6.0.14")
+                .HasAnnotation("ProductVersion", "6.0.16")
                 .HasAnnotation("Relational:MaxIdentifierLength", 30);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("Store.Domain.Entities.Address", b =>
                 {
@@ -27,19 +30,21 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<string>("Building")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar2(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("City")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar2(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Country")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar2(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTimeOffset>("CreateDate")
                         .HasColumnType("datetimeoffset")
@@ -48,7 +53,7 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CreateUserId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("CreateUserId");
 
                     b.Property<int>("CustomerId")
@@ -56,26 +61,26 @@ namespace Store.Infrastructure.Migrations.Migrations
 
                     b.Property<string>("Floor")
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar2(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("PostalCode")
                         .IsRequired()
                         .HasMaxLength(10)
-                        .HasColumnType("nvarchar2(10)");
+                        .HasColumnType("nvarchar(10)");
 
                     b.Property<byte>("RecordStatus")
-                        .HasColumnType("byte")
+                        .HasColumnType("tinyint")
                         .HasColumnName("RecordStatus");
 
                     b.Property<string>("StateOrProvince")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("nvarchar2(50)");
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("StreetAddress")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar2(100)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
@@ -101,10 +106,12 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<string>("CardNumber")
                         .IsRequired()
                         .HasMaxLength(16)
-                        .HasColumnType("nvarchar2(16)");
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<int>("CardType")
                         .HasColumnType("int");
@@ -112,7 +119,7 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CardholderName")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("nvarchar2(100)");
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<DateTimeOffset>("CreateDate")
                         .HasColumnType("datetimeoffset")
@@ -121,7 +128,7 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CreateUserId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("CreateUserId");
 
                     b.Property<int>("CustomerId")
@@ -130,13 +137,13 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CvvCode")
                         .IsRequired()
                         .HasMaxLength(3)
-                        .HasColumnType("nvarchar2(3)");
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<DateTime>("ExpirationDate")
-                        .HasColumnType("timestamp");
+                        .HasColumnType("datetime2");
 
                     b.Property<byte>("RecordStatus")
-                        .HasColumnType("byte")
+                        .HasColumnType("tinyint")
                         .HasColumnName("RecordStatus");
 
                     b.HasKey("Id");
@@ -162,6 +169,8 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<DateTimeOffset>("BirthDate")
                         .HasColumnType("datetimeoffset")
                         .HasColumnName("BirthDate");
@@ -173,19 +182,19 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CreateUserId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("CreateUserId");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("Email");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("varchar2(30)")
+                        .HasColumnType("varchar(30)")
                         .HasColumnName("FirstName");
 
                     b.Property<int>("Gender")
@@ -196,29 +205,29 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("LastName")
                         .IsRequired()
                         .HasMaxLength(50)
-                        .HasColumnType("varchar2(50)")
+                        .HasColumnType("varchar(50)")
                         .HasColumnName("LastName");
 
                     b.Property<string>("Password")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("varchar2(30)")
+                        .HasColumnType("varchar(30)")
                         .HasColumnName("Password");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
                         .HasMaxLength(20)
-                        .HasColumnType("varchar2(20)")
+                        .HasColumnType("varchar(20)")
                         .HasColumnName("PhoneNumber");
 
                     b.Property<byte>("RecordStatus")
-                        .HasColumnType("byte")
+                        .HasColumnType("tinyint")
                         .HasColumnName("RecordStatus");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasMaxLength(30)
-                        .HasColumnType("varchar2(30)")
+                        .HasColumnType("varchar(30)")
                         .HasColumnName("UserName");
 
                     b.HasKey("Id");
@@ -243,6 +252,8 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<DateTimeOffset>("CreateDate")
                         .HasColumnType("datetimeoffset")
                         .HasColumnName("CreateDate");
@@ -250,22 +261,22 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CreateUserId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("CreateUserId");
 
                     b.Property<string>("Description")
                         .HasMaxLength(300)
-                        .HasColumnType("varchar2(300)")
+                        .HasColumnType("varchar(300)")
                         .HasColumnName("Description");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(90)
-                        .HasColumnType("varchar2(90)")
+                        .HasColumnType("varchar(90)")
                         .HasColumnName("Name");
 
                     b.Property<byte>("RecordStatus")
-                        .HasColumnType("byte")
+                        .HasColumnType("tinyint")
                         .HasColumnName("RecordStatus");
 
                     b.HasKey("Id");
@@ -282,11 +293,13 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<DateTimeOffset>("CreateDate")
                         .HasColumnType("datetimeoffset")
@@ -295,17 +308,17 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CreateUserId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("CreateUserId");
 
                     b.Property<int>("CustomerId")
                         .HasColumnType("int");
 
                     b.Property<string>("OrderItems")
-                        .HasColumnType("nclob");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<byte>("RecordStatus")
-                        .HasColumnType("byte")
+                        .HasColumnType("tinyint")
                         .HasColumnName("RecordStatus");
 
                     b.Property<int>("Status")
@@ -334,6 +347,8 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<DateTimeOffset>("CreateDate")
                         .HasColumnType("datetimeoffset")
                         .HasColumnName("CreateDate");
@@ -341,36 +356,36 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CreateUserId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("CreateUserId");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
-                        .HasColumnType("varchar2(500)")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("Description");
 
                     b.Property<string>("ImageUrl")
                         .HasMaxLength(500)
-                        .HasColumnType("varchar2(500)")
+                        .HasColumnType("varchar(500)")
                         .HasColumnName("ImageUrl");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(90)
-                        .HasColumnType("varchar2(90)")
+                        .HasColumnType("varchar(90)")
                         .HasColumnName("Name");
 
                     b.Property<decimal?>("Price")
                         .IsRequired()
                         .HasMaxLength(9)
-                        .HasColumnType("decimal")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("Price");
 
                     b.Property<int>("ProductCategoryId")
                         .HasColumnType("int");
 
                     b.Property<byte>("RecordStatus")
-                        .HasColumnType("byte")
+                        .HasColumnType("tinyint")
                         .HasColumnName("RecordStatus");
 
                     b.Property<int>("Stock")
@@ -393,6 +408,8 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<DateTimeOffset>("CreateDate")
                         .HasColumnType("datetimeoffset")
                         .HasColumnName("CreateDate");
@@ -400,12 +417,12 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CreateUserId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("CreateUserId");
 
                     b.Property<string>("Description")
                         .HasMaxLength(300)
-                        .HasColumnType("varchar2(300)")
+                        .HasColumnType("varchar(300)")
                         .HasColumnName("Description");
 
                     b.Property<int>("MainCategoryId")
@@ -415,11 +432,11 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(90)
-                        .HasColumnType("varchar2(90)")
+                        .HasColumnType("varchar(90)")
                         .HasColumnName("Name");
 
                     b.Property<byte>("RecordStatus")
-                        .HasColumnType("byte")
+                        .HasColumnType("tinyint")
                         .HasColumnName("RecordStatus");
 
                     b.HasKey("Id");
@@ -438,8 +455,10 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int")
                         .HasColumnName("Id");
 
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
                     b.Property<decimal>("Amount")
-                        .HasColumnType("decimal");
+                        .HasColumnType("decimal(18,2)");
 
                     b.Property<int>("CardId")
                         .HasColumnType("int");
@@ -451,7 +470,7 @@ namespace Store.Infrastructure.Migrations.Migrations
                     b.Property<string>("CreateUserId")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("varchar2(100)")
+                        .HasColumnType("varchar(100)")
                         .HasColumnName("CreateUserId");
 
                     b.Property<int>("CustomerId")
@@ -461,11 +480,11 @@ namespace Store.Infrastructure.Migrations.Migrations
                         .HasColumnType("int");
 
                     b.Property<byte>("RecordStatus")
-                        .HasColumnType("byte")
+                        .HasColumnType("tinyint")
                         .HasColumnName("RecordStatus");
 
                     b.Property<byte>("Status")
-                        .HasColumnType("byte");
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 

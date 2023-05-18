@@ -1,4 +1,5 @@
-﻿using Devart.Data.Oracle;
+﻿
+using Microsoft.Data.SqlClient;
 using Shared.Helpers;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace Banking.Infrastructure.Repository.Repositories.Base
 
         public IDbConnection GetStoreDbConnection()
         {
-            var conn = new OracleConnection(_str.Store);
+            var conn = new SqlConnection(_str.Store);
             if (conn.State != ConnectionState.Open) conn.Open();
 
             return conn;

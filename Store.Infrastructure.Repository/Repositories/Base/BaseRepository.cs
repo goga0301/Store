@@ -1,4 +1,5 @@
-﻿using Devart.Data.Oracle;
+﻿
+using Microsoft.Data.SqlClient;
 using Store.Domain.Repository;
 using System.Data;
 
@@ -17,7 +18,7 @@ namespace Store.Infrastructure.Repository.Repositories.Base
 
         protected IDbConnection GetConnection()
         {
-            var conn = new OracleConnection(_connectionString);
+            var conn = new SqlConnection(_connectionString);
             
             if (conn.State != ConnectionState.Open) conn.Open();
 
