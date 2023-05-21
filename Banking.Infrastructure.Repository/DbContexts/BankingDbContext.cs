@@ -8,6 +8,7 @@ namespace Banking.Infrastructure.Repository.DbContexts
     {
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Card> Cards { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
         public BankingDbContext(DbContextOptions<BankingDbContext> options) : base(options)
         {
             

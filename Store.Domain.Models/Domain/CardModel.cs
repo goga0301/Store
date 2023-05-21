@@ -48,6 +48,5 @@ namespace Store.Domain.Models.Domain
         public string CardholderName { get; set; }
         public DateTime ExpirationDate { get; set; }
         public string CvvCode { get; set; }
-        public CardTypeEnum CardType { get; set; }
     }
 }

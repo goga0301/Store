@@ -47,8 +47,7 @@ namespace Store.Domain.Models.Mappers
                 CardNumber = source.CardNumber,
                 CardholderName = source.CardholderName,
                 ExpirationDate = source.ExpirationDate,
-                CvvCode = source.CvvCode,
-                CardType = source.CardType
+                CvvCode = source.CvvCode
             };
         }
     }

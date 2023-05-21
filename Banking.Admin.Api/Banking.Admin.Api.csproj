@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Banking.Handlers\Banking.Handlers.csproj" />
     <ProjectReference Include="..\Banking.Infrastructure.Repository\Banking.Infrastructure.Repository.csproj" />
     <ProjectReference Include="..\Banking.Infrastructure.Service\Banking.Infrastructure.Service.csproj" />
     <ProjectReference Include="..\Shared\Shared.csproj" />
