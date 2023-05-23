@@ -10,6 +10,7 @@ namespace Banking.Infrastructure.Service
         {
             services.AddScoped<ICardService, CardService>();
             services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<ITransactionService, TransactionService>();
 
         }
     }

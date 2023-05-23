@@ -48,9 +48,10 @@ namespace Store.Infrastructure.Service.Domain
 
             _bus.Publish(new CreateTransactionEvent
             {
-                Id = result,
+                ExternalId = result,
                 OrderId = transaction.OrderId,
                 CustomerId = transaction.CustomerId,
+                
                 Amount = transaction.Amount,
                 Card = card.MapForTransaction(),
                 TransactionDate = transaction.CreateDate,

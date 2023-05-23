@@ -15,7 +15,7 @@ namespace Banking.Infrastructure.Repository
         {
             
 
-            services.AddDbContext<BankingDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("StoreDb")));
+            services.AddDbContext<BankingDbContext>(x => x.UseSqlServer(configuration.GetConnectionString("BankingDb")));
         }
 
         public static void AddRepositories(this IServiceCollection services)
@@ -25,6 +25,7 @@ namespace Banking.Infrastructure.Repository
 
             services.AddScoped<ICardRepository, CardRepository>();
             services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<ITransactionRepository, TransactionRepository>();
 
         }
     }

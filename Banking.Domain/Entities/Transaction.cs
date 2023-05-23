@@ -8,6 +8,8 @@ namespace Banking.Domain.Entities
         public int CardId { get; set; }
         public virtual Card Card { get; set; }
         public decimal Amount { get; set; }
+        public int ExternalId { get; set; }
+        public DateTimeOffset TransactionDate { get; set; }
         public TransactionStatusEnum TransactionStatus { get; set; }
     }
 }

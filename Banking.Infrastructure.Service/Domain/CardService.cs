@@ -5,7 +5,7 @@ using Banking.Domain.Service.Domain;
 
 namespace Banking.Infrastructure.Service.Domain
 {
-    public class CardService : ICardService 
+    public class CardService : ICardService
     {
         private readonly ICardRepository _cardRepository;
         public CardService(ICardRepository cardRepository)
@@ -62,6 +62,18 @@ namespace Banking.Infrastructure.Service.Domain
         public async Task<IEnumerable<CardModel>> GetAllCards()
         {
             return (await _cardRepository.GetAllAsync()).Select(x => x.Map());
+        }
+
+        public async Task<CardModel> getCardByCardNumber(string cardNumber)
+        {
+            var card = await _cardRepository.GetSingleAsync(x => x.CardNumber == cardNumber);
+            if (card == null)
+            {
+                throw new Exception("ბარათი ვერ მოიძებნა");
+            }
+
+            return card.Map();
+
         }
     }
 }

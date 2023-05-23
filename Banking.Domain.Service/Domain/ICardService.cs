@@ -9,5 +9,6 @@ namespace Banking.Domain.Service.Domain
         void DeleteCard(int Id);
         Task<CardModel> GetCardByIdAsync(int Id);
         Task<IEnumerable<CardModel>> GetAllCards();
+        Task<CardModel> getCardByCardNumber(string cardNumber);
     }
 }

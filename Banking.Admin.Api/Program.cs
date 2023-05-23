@@ -3,8 +3,7 @@ using Shared.Helpers;
 using Banking.Infrastructure.Repository;
 using Banking.Infrastructure.Service;
 using RabbitMQ.Domains.Core.Bus;
-using Banking.Domain.Models.Models;
-using Banking.Handlers.Handlers;
+using Banking.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,8 +17,7 @@ builder.Services.AddRepositories();
 
 
 builder.Services.AddRabbitMQServices();
-builder.Services.AddScoped<CreateTransactionHandler>(); 
-builder.Services.AddScoped<IEventHandler<CreateTransactionEvent>, CreateTransactionHandler>();
+builder.Services.AddRabbitMQHandlers();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -35,7 +33,7 @@ if (app.Environment.IsDevelopment())
 }
 
 var eventBus = app.Services.GetRequiredService<IEventBus>();
-eventBus.Subscribe<CreateTransactionEvent, CreateTransactionHandler>();
+eventBus.SubscribeRabbitMQHandlers();
 
 app.UseError();
 

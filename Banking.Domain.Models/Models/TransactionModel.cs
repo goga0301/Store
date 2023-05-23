@@ -7,7 +7,9 @@ namespace Banking.Domain.Models.Models
         public int Id { get; set; }
         public int CardId { get; set; }
         public decimal Amount { get; set; }
+        public int ExternalId { get; set; }
         public TransactionStatusEnum TransactionStatus { get; set; }
+        public DateTimeOffset TransactionDate { get; set; }
         public RecordStatusEnum RecordStatus { get; set; }
         public DateTimeOffset CreateDate { get; set; }
         public string CreateUserId { get; set; }
@@ -17,6 +19,8 @@ namespace Banking.Domain.Models.Models
     {
         public int CardId { get; set; }
         public decimal Amount { get; set; }
+        public int ExternalId { get; set; }
+        public DateTimeOffset TransactionDate { get; set; }
     }
 
     public class UpdateTransactionModel

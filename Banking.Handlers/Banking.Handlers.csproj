@@ -8,6 +8,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Banking.Domain.Models\Banking.Domain.Models.csproj" />
+    <ProjectReference Include="..\Banking.Domain.Repository\Banking.Domain.Repository.csproj" />
+    <ProjectReference Include="..\Banking.Domain.Service\Banking.Domain.Service.csproj" />
     <ProjectReference Include="..\RabbitMQ.Domain.Core\RabbitMQ.Domain.Core.csproj" />
   </ItemGroup>
 

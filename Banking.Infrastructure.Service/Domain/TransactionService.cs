@@ -64,5 +64,7 @@ namespace Banking.Infrastructure.Service.Domain
         {
             return (await _transactionRepository.GetAllAsync()).Select(x => x.Map());
         }
+
+        
     }
 }

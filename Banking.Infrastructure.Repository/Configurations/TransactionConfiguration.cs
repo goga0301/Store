@@ -12,6 +12,8 @@ namespace Banking.Infrastructure.Repository.Configurations
             builder.Property(x => x.CardId).IsRequired();
             builder.Property(x => x.Amount).IsRequired();
             builder.Property(x => x.TransactionStatus).IsRequired();
+            builder.Property(x => x.TransactionDate).IsRequired();
+            builder.Property(x => x.ExternalId).IsRequired();
 
             builder.HasOne(x => x.Card)
                 .WithMany()

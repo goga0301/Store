@@ -3,6 +3,9 @@ using Store.Infrastructure.Repository;
 using Store.Infrastructure.Service;
 using Shared;
 using Shared.Helpers;
+using Store.Admin.Handlers.Handlers;
+using RabbitMQ.Domains.Core.Bus;
+using Store.Domain.Models.Domain;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,6 +22,9 @@ builder.Services.AddMediatR(x =>
 });
 builder.Services.AddRabbitMQServices();
 
+builder.Services.AddScoped<TransactionResultHandler>();
+builder.Services.AddScoped<IEventHandler<TransactionResultEvent>, TransactionResultHandler>();
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -31,6 +37,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseError();
+var eventBus = app.Services.GetRequiredService<IEventBus>();
+eventBus.Subscribe<TransactionResultEvent, TransactionResultHandler>();
 
 app.UseHttpsRedirection();
 

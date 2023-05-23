@@ -1,14 +1,12 @@
 ﻿using RabbitMQ.Domains.Core.Events;
 
-namespace Banking.Domain.Models.Models
+namespace Banking.Domain.Models.Events
 {
     public class CreateTransactionEvent : Event
     {
-        public int Id { get; set; }
-        public int OrderId { get; set; }
-        public int CustomerId { get; set; }
         public CardModelForTransaction Card { get; set; }
         public decimal Amount { get; set; }
+        public int ExternalId { get; set; }
         public DateTimeOffset TransactionDate { get; set; }
 
     }
