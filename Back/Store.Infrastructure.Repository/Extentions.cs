@@ -6,6 +6,7 @@ using Store.Infrastructure.Repository.DbContexts;
 using Store.Infrastructure.Repository.Repositories;
 using Store.Infrastructure.Repository.Repositories.Base;
 using Shared.Helpers;
+using Store.Domain.Repository.Base;
 
 namespace Store.Infrastructure.Repository
 {
@@ -31,6 +32,11 @@ namespace Store.Infrastructure.Repository
             services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddScoped<ITransactionRepository, TransactionRepository>();
             
+        }
+
+        public static void AddCacheRepositories(this IServiceCollection services)
+        {
+            //services.AddScoped(typeof(GenericRepository<,,>));
         }
 
     }

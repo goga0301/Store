@@ -8,11 +8,11 @@ using System.Linq.Expressions;
 
 namespace Store.Infrastructure.Repository.Repositories.Base
 {
-    public abstract class GenericRepository<TContext, TEntity, TKey> : IGenericRepository<TEntity, TKey>, IDisposable where TContext : DbContext where TEntity : class where TKey : struct
+    public  class GenericRepository<TContext, TEntity, TKey> : IGenericRepository<TEntity, TKey>, IDisposable where TContext : DbContext where TEntity : class where TKey : struct
     {
         protected readonly TContext _context;
 
-        protected GenericRepository(TContext context)
+        public GenericRepository(TContext context)
         {
             _context = context;
         }

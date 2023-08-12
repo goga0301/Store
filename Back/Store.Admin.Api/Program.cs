@@ -16,6 +16,10 @@ builder.Services.AddControllers();
 builder.Services.AddDbContexts(builder.Configuration);
 builder.Services.AddDomainServices();
 builder.Services.AddRepositories();
+builder.Services.AddCacheRepositories();
+builder.Services.AddScoped<ExpirationTimeProvider>();
+
+builder.Services.AddMemoryCache();
 builder.Services.AddMediatR(x =>
 {
     x.RegisterServicesFromAssembly(typeof(GetProductQuery).Assembly);
